@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Typography, TextField, Grid } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-export default function Header() {
-  const [search, setSearch] = useState("");
-  function handleSearch(event) {}
+export default function Header({ search, setSearch, handleSearch }) {
   return (
     <div>
       <div>

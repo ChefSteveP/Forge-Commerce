@@ -2,3 +2,7 @@
   color: var(--dark-lilac);
   margin: 20px;
 }
+
+.cardGrid {
+  padding: 20px 0;
+}
