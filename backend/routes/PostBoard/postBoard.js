@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const multer = require("multer");
 const AWS = require("aws-sdk");
+require("dotenv").config();
 
 const db = require("../../firebase.js");
 const {
@@ -17,9 +18,9 @@ const {
 } = require("firebase/firestore");
 
 AWS.config.update({
-  accessKeyId: "AKIASQT3AVMZSS4OFABR",
-  secretAccessKey: "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",
-  region: "us-east-2",
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  region: process.env.AWS_BUCKET_REGION,
 });
 
 const s3 = new AWS.S3();
@@ -64,7 +65,7 @@ router.post("/", upload.single("image"), async function (req, res) {
     // Handle the file upload to AWS S3 and retrieve the image URL
     const s3UploadResponse = await s3
       .upload({
-        Bucket: "forge-swe-week3-team2",
+        Bucket: process.env.AWS_BUCKET_NAME,
         Key: imageFile.originalname,
         Body: imageFile.buffer,
       })
