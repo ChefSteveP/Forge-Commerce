@@ -1,5 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import "./PostBoardPage.css";
+import Header from "./Header";
 
 export default function PostBoardPage() {
-  return <div></div>;
+  return (
+    <>
+      <header className="postBoard__header">
+        <Header />
+      </header>
+    </>
+  );
 }
