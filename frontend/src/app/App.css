@@ -1,0 +1,24 @@
+/* Custom CSS */
+
+:root {
+  --dark-lilac: #9381ff;
+  --light-lilac: #b8b8ff;
+  --white: #f8f7ff;
+  --black: #000000;
+  --white: #ffffff;
+
+  --font-family: "Montserrat", sans-serif;
+  --font-weight: 400; /* change to your font weight */
+  /* --font-style: some-font-style; change to your font style */
+}
+
+* {
+  /* applies your font, font-weight and font-style to all elements */
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: var(--font-weight);
+  /* font-style: var(--font-style); */
+}
+
+body {
+  overflow: hidden;
+}
