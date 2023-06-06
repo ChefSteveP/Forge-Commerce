@@ -2,26 +2,38 @@ import React, { useEffect, useState } from "react";
 import "./PostBoardPage.css";
 import Header from "./Header";
 import { Container, Grid } from "@mui/material";
-import Card from "./Card";
 import axios from "axios";
+import PostCard from "./PostCard";
 
 export default function PostBoardPage() {
   const [info, setInfo] = useState();
   const [search, setSearch] = useState("");
   const [filteredInfo, setFilteredInfo] = useState();
+  let user = "Jacob Wald";
 
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       try {
-  //         const response = await axios.get();
-  //       } catch {}
-  //     };
-  //     fetchData();
-  //   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:9000/profile/${user}`
+        );
+        setInfo(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [user]);
+
+  console.log(info);
 
   function handleSearch(event) {
     setSearch(event.target.value);
-    console.log(search);
+    setFilteredInfo(
+      info.filter((item) =>
+        item.name.toLowerCase().includes(event.target.value.toLowerCase())
+      )
+    );
   }
 
   return (
@@ -36,12 +48,14 @@ export default function PostBoardPage() {
       <main>
         <Container maxWidth="fullWidth">
           <Grid container className="cardGrid" spacing={3}>
-            {/* {search === ""
+            {search === ""
               ? info &&
-                info.map((data, index) => <Card data={data} index={index} />)
+                info.map((data, index) => (
+                  <PostCard data={data} index={index} />
+                ))
               : filteredInfo.map((data, index) => (
-                  <Card data={data} index={index} />
-                ))} */}
+                  <PostCard data={data} index={index} />
+                ))}
           </Grid>
         </Container>
       </main>
