@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Typography, TextField, Grid } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -27,7 +27,7 @@ export default function Header({ search, setSearch, handleSearch }) {
         <Grid item>
           <TextField
             value={search}
-            placeholder="Find user"
+            placeholder="Find listing"
             onChange={(event) => handleSearch(event)}
           ></TextField>
         </Grid>

@@ -15,7 +15,7 @@ export default function PostBoardPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/profile/${user}`
+          `http://localhost:9000/postBoard/${user}`
         );
         setInfo(response.data);
       } catch (error) {
