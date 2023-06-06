@@ -14,12 +14,18 @@ const {
   deleteDoc,
 } = require("firebase/firestore");
 
-// get all listings for a user
-router.get("/", async function (req, res) {
+// get all listings for a specific user
+router.get("/:username", async function (req, res) {
   try {
-    let query = await getDocs(collection(db, "products"));
+    
+    const q = query(
+      collection(db, "products"),
+      where("listedby", "==", req.params.username)
+    );
+    const querySnapshot = await getDocs(q);
     let response = [];
-    query.forEach((doc) => response.push({ ...doc.data(), id: doc.id }));
+    querySnapshot.forEach((doc) => response.push({ ...doc.data(), id: doc.id }));
+
     return res.status(200).json(response);
   } catch (error) {
     return res.status(404).json(error);
