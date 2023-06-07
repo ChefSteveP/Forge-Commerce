@@ -6,9 +6,5 @@ const serviceAccount = require("./permissions.json");
 
 const app = initializeApp(serviceAccount);
 const db = getFirestore(app);
-// const auth = getAuth(app);
 
-module.exports = {
-  db: db,
-  //   auth: auth,
-};
+module.exports = db;
