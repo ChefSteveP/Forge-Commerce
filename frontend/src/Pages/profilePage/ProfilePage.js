@@ -9,13 +9,13 @@ const ProfilePage = () => {
     <>
       <Navbar />
       <div className="item-container">
-        <h1>Profile Page</h1>
+        <h1 className="page-title">Profile Page</h1>
         <ProfileCard />
         <MyListings />
-        {/* <Box my={4}>
+        {/* <Box>
           <ProfileCard />
         </Box>
-        <Box my={4}>
+        <Box>
           <MyListings />
         </Box> */}
       </div>

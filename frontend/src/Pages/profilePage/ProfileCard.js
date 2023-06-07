@@ -1,75 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import { Typography, Card, CardContent, Box } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import { Typography, Card, CardContent, Box } from "@mui/material";
 import { auth } from "../../app/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
 
 function ProfileCard() {
   const [user, setUser] = useState(null);
-  
-  
+
   const [curUser, setCurUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          try {
-            setCurUser(user.email);
-          } catch (error) {
-            // Handle any errors
-            console.error(error);
-          }
+      if (user) {
+        try {
+          setCurUser(user.email);
+        } catch (error) {
+          // Handle any errors
+          console.error(error);
         }
-      });
-  
-      return () => {
-        unsubscribe();
-      };
-    }, []);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
-   
     const fetchUser = async () => {
-      
-        
-        const response = await fetch(`http://localhost:9000/profile/user/${curUser}`);
-        const data = await response.json();
-        if(response.ok) {
-          setUser({ email: curUser, name: data.name });
-          
-        } else {
-          console.error('Error fetching user:', data);
-         
-        }
-      
+      const response = await fetch(
+        `http://localhost:9000/profile/user/${curUser}`
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setUser({ email: curUser, name: data.name });
+      } else {
+        console.error("Error fetching user:", data);
+      }
     };
     if (curUser) {
-    fetchUser();}
+      fetchUser();
+    }
   }, [curUser]);
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-      <Card sx={{
-          backgroundColor: 'light-lilac',
-          color: 'black',
-          width: '100%',
+    <Box>
+      <Card
+        sx={{
+          backgroundColor: "light-lilac",
+          color: "black",
+          width: "100%",
           maxWidth: 345,
-          marginBottom: '1em',
-          '@media (max-width:600px)': {
-            width: '80%',
-            margin: '1em auto',
+          marginBottom: "1em",
+          "@media (max-width:600px)": {
+            width: "80%",
+            margin: "1em auto",
           },
-        }}>
+        }}
+      >
         <CardContent>
-          <Typography variant="h5" component="h2" gutterBottom sx={{fontSize: 24, fontWeight: 'bold'}}>
+          <Typography
+            variant="h5"
+            component="h2"
+            gutterBottom
+            sx={{ fontSize: 24, fontWeight: "bold" }}
+          >
             Profile
           </Typography>
-          <Typography variant="body2" component="p" sx={{fontSize: 16}}>
+          <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
             Email: {user?.email}
           </Typography>
-          <Typography variant="body2" component="p" sx={{fontSize: 16}}>
+          <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
             name: {user?.name}
           </Typography>
-          <Typography variant="body2" component="p" sx={{fontSize: 16}}>
+          <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
             Earnings: $152.3
           </Typography>
         </CardContent>
@@ -79,11 +82,6 @@ function ProfileCard() {
 }
 
 export default ProfileCard;
-
-
-
-
-
 
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
