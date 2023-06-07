@@ -1,35 +1,21 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
-// import { useCurrentUserState } from "../../Components/appState";
 import { auth } from "../../app/firebase.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { RouteLocations } from "../../app/RouteLocations";
-import { AppStateContext } from "../../Components/appState.js";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const { appState, setAppState } = useContext(AppStateContext);
-
-  useEffect(() => {
-    setAppState((prevState) => ({
-      ...prevState,
-      user: email,
-    }));
-    localStorage.setItem("email", email);
-    if (email) {
-      navigate(RouteLocations.postBoard);
-    }
-  }, [email]);
-
   const [signUp, setSignUp] = useState(false);
 
   const navigate = useNavigate();
@@ -38,18 +24,20 @@ export default function LoginPage() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    signInWithEmailAndPassword(
-      auth,
-      data.get("email"),
-      data.get("password")
-    ).then((userCredential) => {
-      const user = userCredential.user;
-      setEmail(user.email);
-      // navigate(RouteLocations.postBoard);
-    });
+    setPersistence(auth, browserLocalPersistence)
+      .then(() => {
+        // Set the persistence option and continue with sign-in
+        signInWithEmailAndPassword(
+          auth,
+          data.get("email"),
+          data.get("password")
+        );
+        navigate(RouteLocations.postBoard);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
-
-  console.log(email);
 
   const handleLinkClick = (event) => {
     setSignUp(true);

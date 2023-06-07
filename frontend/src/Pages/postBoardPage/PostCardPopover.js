@@ -18,7 +18,7 @@ export default function PostCardPopover({
   popoverOpen,
   setPopoverOpen,
   popoverAnchorEl,
-  //   handleAddToCard,
+  //   handleAddToCart,
 }) {
   function handlePopoverClose() {
     setPopoverOpen(false);
