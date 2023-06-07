@@ -1,7 +1,13 @@
-import Navbar from "../Components/Navbar";
-import React from "react";
-
-
+import "./App.css";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { RouteLocations } from "./RouteLocations";
+import PostBoardPage from "../Pages/postBoardPage/PostBoardPage";
+import ProfilePage from "../Pages/profilePage/ProfilePage";
+import CheckoutPage from "../Pages/checkoutPage/CheckoutPage";
+import CartPage from "../Pages/cartPage/CartPage";
+import LoginPage from "../Pages/loginPage/LoginPage";
+import CreateAccountPage from "../Pages/createAccountPage/CreateAccountPage";
+import ErrorPage from "../Pages/errorPage/ErrorPage";
 
 function App() {
   return (

@@ -14,9 +14,11 @@ import StoreIcon from '@mui/icons-material/Store';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import LoginIcon from '@mui/icons-material/Login';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import theme from '../theme';
-import logo from '../assets/logo1.png'; 
+import logo from '../assets/logo1.png';
+import { RouteLocations } from '../app/RouteLocations';
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -99,23 +101,25 @@ const Navbar = () => {
     setMobileOpen(!mobileOpen);
   };
 
+
+
   const drawer = (
     <Stack spacing={2} sx={{ width: 150, padding: 4 }}>
-      <NavigationLink to='/shop'>
+      <NavigationLink to={RouteLocations.postBoard}>
         <StoreIcon />
         <Typography variant="body2">Shop</Typography>
       </NavigationLink>
-      <NavigationLink to='/profile'>
+      <NavigationLink to={RouteLocations.profile}>
         <PersonIcon />
         <Typography variant="body2">Profile</Typography>
       </NavigationLink>
-      <NavigationLink to='/cart'>
+      <NavigationLink to={RouteLocations.cart}>
         <ShoppingCartIcon />
         <Typography variant="body2">Cart</Typography>
       </NavigationLink>
-      <NavigationLink to='/logout'>
-        <ExitToAppIcon />
-        <Typography variant="body2">Logout</Typography>
+      <NavigationLink to={RouteLocations.login}>
+        <LoginIcon />
+        <Typography variant="body2">Login</Typography>
       </NavigationLink>
     </Stack>
   );
@@ -141,22 +145,25 @@ const Navbar = () => {
           </Search>
           {matches && (
             <>
-              <ButtonWithBar>
-                <StoreIcon />
-                <Typography variant="body2">Shop</Typography>
-              </ButtonWithBar>
-              <ButtonWithBar>
-                <PersonIcon />
-                <Typography variant="body2">Profile</Typography>
-              </ButtonWithBar>
-              <ButtonWithBar>
-                <ShoppingCartIcon />
-                <Typography variant="body2">Cart</Typography>
-              </ButtonWithBar>
-              <ButtonWithBar>
-                <ExitToAppIcon />
-                <Typography variant="body2">Logout</Typography>
-              </ButtonWithBar>
+            <ButtonWithBar component={RouterLink} to={RouteLocations.postBoard}>
+            <StoreIcon />
+            <Typography variant="body2">Shop</Typography>
+            </ButtonWithBar>
+
+            <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
+            <PersonIcon />
+            <Typography variant="body2">Profile</Typography>
+            </ButtonWithBar>
+
+            <ButtonWithBar component={RouterLink} to={RouteLocations.cart}>
+            <ShoppingCartIcon />
+            <Typography variant="body2">Cart</Typography>
+            </ButtonWithBar>
+
+            <ButtonWithBar component={RouterLink} to={RouteLocations.login}>
+            <LoginIcon />
+            <Typography variant="body2">Login</Typography>
+            </ButtonWithBar>
             </>
           )}
           {!matches && (
