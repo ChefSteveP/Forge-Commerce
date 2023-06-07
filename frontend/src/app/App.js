@@ -16,7 +16,7 @@ function App() {
         <Route
           path="/"
           index
-          element={<Navigate to={RouteLocations.postBoard} />}
+          element={<Navigate to={RouteLocations.login} />}
         />
         <Route path="postBoard">
           <Route index element={<PostBoardPage />} />
