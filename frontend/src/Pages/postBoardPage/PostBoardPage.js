@@ -70,7 +70,7 @@ export default function PostBoardPage() {
     <>
       <Navbar />
       <div className="item-container">
-        <header className="postBoard__header">
+        <header className="page-title">
           <Header search={search} handleSearch={handleSearch} />
         </header>
         <main>

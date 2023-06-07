@@ -14,7 +14,12 @@ export default function Header({ search, handleSearch }) {
   return (
     <div>
       <div>
-        <Typography variant="h2" gutterBottom>
+        <Typography
+          variant="h2"
+          gutterBottom
+          className="page-title"
+          style={{ marginLeft: "0px" }}
+        >
           Post Board
         </Typography>
       </div>
@@ -46,7 +51,11 @@ export default function Header({ search, handleSearch }) {
               handleSellItemButtonClick(event);
             }}
           >
-            <SellIcon fontSize="large" style={{ color: "var(--dark-lilac)" }} />
+            <SellIcon
+              fontSize="large"
+              style={{ color: "var(--dark-lilac)", marginRight: "10px" }}
+            />
+            List an Item
           </Button>
           <SellItem popoverOpen={popoverOpen} setPopoverOpen={setPopoverOpen} />
         </Grid>
