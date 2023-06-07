@@ -57,15 +57,15 @@ router.post("/add", async function (req, res) {
     const itemID = req.body.id;
     // get item from products collection and increment amountSaved by 1
     // id refers to document id
-    const itemRef = doc(db, "products", itemID);
-    const itemDoc = await getDoc(itemRef);
-    if (itemDoc.exists()) {
-      const itemData = itemDoc.data();
-      const newAmountSaved = itemData.amountSaved + 1;
-      await updateDoc(itemRef, { amountSaved: newAmountSaved });
-    } else {
-      console.log("No such document!");
-    }
+    // const itemRef = doc(db, "products", itemID);
+    // const itemDoc = await getDoc(itemRef);
+    // if (itemDoc.exists()) {
+    //   const itemData = itemDoc.data();
+    //   const newAmountSaved = itemData.amountSaved + 1;
+    //   await updateDoc(itemRef, { amountSaved: newAmountSaved });
+    // } else {
+    //   console.log("No such document!");
+    // }
 
     // add document id to user's saved items in database
     // get user document from email field
@@ -75,13 +75,23 @@ router.post("/add", async function (req, res) {
     querySnapshot.forEach(async (item) => {
       const userRef = doc(db, "users", item.id);
       const userDoc = await getDoc(userRef);
-      if (userDoc.exists()) {
+      if (userDoc.exists() && !userDoc.data().savedItems.includes(itemID)) {
         const userData = userDoc.data();
         const newSavedItems = userData.savedItems;
         newSavedItems.push(itemID);
         await updateDoc(userRef, { savedItems: newSavedItems });
+
+        const itemRef = doc(db, "products", itemID);
+        const itemDoc = await getDoc(itemRef);
+        if (itemDoc.exists()) {
+          const itemData = itemDoc.data();
+          const newAmountSaved = itemData.amountSaved + 1;
+          await updateDoc(itemRef, { amountSaved: newAmountSaved });
+        } else {
+          console.log(" 1 No such document!");
+        }
       } else {
-        console.log("No such document!");
+        console.log(" 2 No such document!");
       }
     });
     return res.status(200).json({ message: "Item added to cart" });
