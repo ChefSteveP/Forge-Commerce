@@ -17,14 +17,15 @@ const {
 // get all listings for a specific user
 router.get("/:username", async function (req, res) {
   try {
-    
     const q = query(
       collection(db, "products"),
       where("listedby", "==", req.params.username)
     );
     const querySnapshot = await getDocs(q);
     let response = [];
-    querySnapshot.forEach((doc) => response.push({ ...doc.data(), id: doc.id }));
+    querySnapshot.forEach((doc) =>
+      response.push({ ...doc.data(), id: doc.id })
+    );
 
     return res.status(200).json(response);
   } catch (error) {
@@ -61,6 +62,24 @@ router.delete("/:listingID", async function (req, res) {
   try {
     await deleteDoc(doc(db, "products", req.params.listingID));
     return res.status(200).json({ message: "deletion successful" });
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+});
+
+// get user name from email
+router.get("/user/:email", async function (req, res) {
+  try {
+    const q = query(
+      collection(db, "users"),
+      where("email", "==", req.params.email)
+    );
+    const querySnapshot = await getDocs(q);
+    let ret;
+    querySnapshot.forEach((doc) => (ret = doc.data().name));
+    return res
+      .status(200)
+      .json({ message: "successfully got username", name: ret });
   } catch (error) {
     return res.status(404).json(error);
   }
