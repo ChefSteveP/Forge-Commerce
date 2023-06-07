@@ -14,6 +14,24 @@ const {
   deleteDoc,
 } = require("firebase/firestore");
 
+// get user name from email
+router.get("/user/:email", async function (req, res) {
+  try {
+    const q = query(
+      collection(db, "users"),
+      where("email", "==", req.params.email)
+    );
+    const querySnapshot = await getDocs(q);
+    let ret;
+    querySnapshot.forEach((doc) => (ret = doc.data().name));
+    return res
+      .status(200)
+      .json({ message: "successfully got username", name: ret });
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+});
+
 // get all listings for a specific user
 router.get("/:username", async function (req, res) {
   try {
@@ -67,22 +85,6 @@ router.delete("/:listingID", async function (req, res) {
   }
 });
 
-// get user name from email
-router.get("/user/:email", async function (req, res) {
-  try {
-    const q = query(
-      collection(db, "users"),
-      where("email", "==", req.params.email)
-    );
-    const querySnapshot = await getDocs(q);
-    let ret;
-    querySnapshot.forEach((doc) => (ret = doc.data().name));
-    return res
-      .status(200)
-      .json({ message: "successfully got username", name: ret });
-  } catch (error) {
-    return res.status(404).json(error);
-  }
-});
+
 
 module.exports = router;
