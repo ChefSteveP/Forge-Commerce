@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PostBoardPage.css";
 import {
   Grid,
@@ -12,15 +12,31 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import PostCardPopover from "./PostCardPopover";
+import axios from "axios";
 
 export default function PostCard({ data, index }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
+  const [itemOwner, setItemOwner] = useState("");
 
   function handleViewInfoButtonClick(event, index) {
     setPopoverAnchorEl(index);
     setPopoverOpen(true);
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:9000/profile/user/${data.listedby}`
+        );
+        setItemOwner(response.data.name);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (data.listedby) fetchData();
+  }, [data]);
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -29,10 +45,7 @@ export default function PostCard({ data, index }) {
         style={{ backgroundColor: "var(--light-lilac)" }}
       >
         <div className="cardMediaContainer">
-          <CardMedia
-            className="cardMedia"
-            image="https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg"
-          />
+          <CardMedia className="cardMedia" image={data.imageUrl} />
         </div>
         <Card
           className="cardContentContainer"
@@ -68,6 +81,7 @@ export default function PostCard({ data, index }) {
               popoverOpen={popoverOpen}
               setPopoverOpen={setPopoverOpen}
               popoverAnchorEl={popoverAnchorEl}
+              itemOwner={itemOwner}
               // handleAddToCart={handleAddToCart}
             />
             <Button
