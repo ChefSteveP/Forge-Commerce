@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
-const { db, auth } = require("../../firebase.js");
-// const db = require("../../firebase.js");
+// const { db, auth } = require("../../firebase.js");
+const db = require("../../firebase.js");
 const {
   getDocs,
   collection,

@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./PostBoardPage.css";
 import Header from "./Header";
 import { Container, Grid } from "@mui/material";
 import axios from "axios";
 import PostCard from "./PostCard";
+import { AppStateContext } from "../../Components/appState.js";
 
 export default function PostBoardPage() {
   const [info, setInfo] = useState();
   const [search, setSearch] = useState("");
   const [filteredInfo, setFilteredInfo] = useState();
+
+  const { appState, setAppState } = useContext(AppStateContext);
+  let email = appState.user;
+  if (!appState.user) {
+    email = localStorage.getItem("email");
+  }
+
   let user = "Jacob Wald";
 
   useEffect(() => {
@@ -25,7 +33,7 @@ export default function PostBoardPage() {
     fetchData();
   }, [user]);
 
-  console.log(info);
+  console.log(email);
 
   function handleSearch(event) {
     setSearch(event.target.value);
