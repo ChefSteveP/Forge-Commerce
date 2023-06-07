@@ -77,6 +77,8 @@ router.post("/", upload.single("image"), async function (req, res) {
     const newDocRef = await addDoc(collection(db, "products"), {
       ...req.body,
       imageUrl,
+      price: Number(req.body.price),
+      amountSaved: Number(req.body.amountSaved),
     });
 
     return res

@@ -18,8 +18,9 @@ export default function PostCardPopover({
   popoverOpen,
   setPopoverOpen,
   popoverAnchorEl,
+  itemOwner,
   addToCart,
-  //   handleAddToCart,
+
 }) {
   function handlePopoverClose() {
     setPopoverOpen(false);
@@ -53,7 +54,7 @@ export default function PostCardPopover({
                 <Grid item>
                   <CardMedia
                     className="profileImage"
-                    image="https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg"
+                    image={data.imageUrl}
                     style={{
                       width: 200,
                       height: 200,
@@ -93,7 +94,7 @@ export default function PostCardPopover({
                   </Grid>
                   <Grid item style={{ marginLeft: "auto" }}>
                     <Typography className="infoTextColor" variant="body2">
-                      {data.listedby}
+                      {itemOwner}
                     </Typography>
                   </Grid>
                 </Grid>

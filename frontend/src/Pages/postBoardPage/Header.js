@@ -1,8 +1,16 @@
-import React from "react";
-import { Typography, TextField, Grid } from "@mui/material";
+import React, { useState } from "react";
+import { Typography, TextField, Grid, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import SellItem from "../../Components/sellItem";
+import SellIcon from "@mui/icons-material/Sell";
 
-export default function Header({ search, setSearch, handleSearch }) {
+export default function Header({ search, handleSearch }) {
+  const [popoverOpen, setPopoverOpen] = useState(false);
+
+  function handleSellItemButtonClick(event) {
+    setPopoverOpen(true);
+  }
+
   return (
     <div>
       <div>
@@ -30,6 +38,17 @@ export default function Header({ search, setSearch, handleSearch }) {
             placeholder="Find listing"
             onChange={(event) => handleSearch(event)}
           ></TextField>
+        </Grid>
+        <Grid item>
+          <Button
+            size="medium"
+            onClick={(event) => {
+              handleSellItemButtonClick(event);
+            }}
+          >
+            <SellIcon fontSize="large" style={{ color: "var(--dark-lilac)" }} />
+          </Button>
+          <SellItem popoverOpen={popoverOpen} setPopoverOpen={setPopoverOpen} />
         </Grid>
       </Grid>
     </div>

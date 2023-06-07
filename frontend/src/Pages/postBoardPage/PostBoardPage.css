@@ -54,3 +54,8 @@
 .infoTextColor {
   color: var(--custom-white);
 }
+
+.item-container {
+  overflow-y: auto;
+  max-height: 100vh;
+}

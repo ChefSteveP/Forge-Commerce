@@ -66,13 +66,9 @@ export default function PostBoardPage() {
   };
 
   return (
-    <>
+    <div className="item-container">
       <header className="postBoard__header">
-        <Header
-          search={search}
-          setSearch={setSearch}
-          handleSearch={handleSearch}
-        />
+        <Header search={search} handleSearch={handleSearch} />
       </header>
       <main>
         <Container maxWidth="fullWidth">
@@ -88,6 +84,6 @@ export default function PostBoardPage() {
           </Grid>
         </Container>
       </main>
-    </>
+    </div>
   );
 }
