@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./PostBoardPage.css";
 import {
   Grid,
@@ -11,33 +11,20 @@ import {
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import PostCardPopover from "./PostCardPopover";
-import axios from "axios";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 
-export default function PostCard({ data, index, addToCart }) {
+import PostCardPopover from "./PostCardPopover";
+import PostCardCartPopover from "./PostCardCartPopover";
+
+export default function PostCardCart({ data, index, removeFromCart }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
-  const [itemOwner, setItemOwner] = useState("");
 
   function handleViewInfoButtonClick(event, index) {
     setPopoverAnchorEl(index);
     setPopoverOpen(true);
   }
   console.log(data);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:9000/profile/user/${data.listedby}`
-        );
-        setItemOwner(response.data.name);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (data.listedby) fetchData();
-  }, [data]);
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -76,22 +63,22 @@ export default function PostCard({ data, index, addToCart }) {
                 style={{ color: "var(--custom-white)" }}
               />
             </Button>
-            <PostCardPopover
+            <PostCardCartPopover
               data={data}
               index={index}
               popoverOpen={popoverOpen}
               setPopoverOpen={setPopoverOpen}
               popoverAnchorEl={popoverAnchorEl}
-              itemOwner={itemOwner}
-              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              // handleAddToCart={handleAddToCart}
             />
             <Button
               size="medium"
               onClick={() => {
-                addToCart(data.id);
+                removeFromCart(data.id);
               }}
             >
-              <AddShoppingCartIcon
+              <RemoveShoppingCartIcon
                 fontSize="large"
                 style={{ color: "var(--custom-white)" }}
               />
