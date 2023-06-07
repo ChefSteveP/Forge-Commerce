@@ -11,9 +11,12 @@ import {
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import PostCardPopover from "./PostCardPopover";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 
-export default function PostCard({ data, index, addToCart }) {
+import PostCardPopover from "./PostCardPopover";
+import PostCardCartPopover from "./PostCardCartPopover";
+
+export default function PostCardCart({ data, index, removeFromCart }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
 
@@ -30,10 +33,7 @@ export default function PostCard({ data, index, addToCart }) {
         style={{ backgroundColor: "var(--light-lilac)" }}
       >
         <div className="cardMediaContainer">
-          <CardMedia
-            className="cardMedia"
-            image="https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg"
-          />
+          <CardMedia className="cardMedia" image={data.imageUrl} />
         </div>
         <Card
           className="cardContentContainer"
@@ -63,22 +63,22 @@ export default function PostCard({ data, index, addToCart }) {
                 style={{ color: "var(--custom-white)" }}
               />
             </Button>
-            <PostCardPopover
+            <PostCardCartPopover
               data={data}
               index={index}
               popoverOpen={popoverOpen}
               setPopoverOpen={setPopoverOpen}
               popoverAnchorEl={popoverAnchorEl}
-              addToCart={addToCart}
+              removeFromCart={removeFromCart}
               // handleAddToCart={handleAddToCart}
             />
             <Button
               size="medium"
               onClick={() => {
-                addToCart(data.id);
+                removeFromCart(data.id);
               }}
             >
-              <AddShoppingCartIcon
+              <RemoveShoppingCartIcon
                 fontSize="large"
                 style={{ color: "var(--custom-white)" }}
               />

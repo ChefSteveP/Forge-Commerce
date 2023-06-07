@@ -53,6 +53,18 @@ export default function PostBoardPage() {
     );
   }
 
+  const addToCart = async (id) => {
+    try {
+      const response = await axios.post(`http://localhost:9000/cart/add`, {
+        email: curUser,
+        id: id,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <header className="postBoard__header">
@@ -68,10 +80,10 @@ export default function PostBoardPage() {
             {search === ""
               ? info &&
                 info.map((data, index) => (
-                  <PostCard data={data} index={index} />
+                  <PostCard data={data} index={index} addToCart={addToCart} />
                 ))
               : filteredInfo.map((data, index) => (
-                  <PostCard data={data} index={index} />
+                  <PostCard data={data} index={index} addToCart={addToCart} />
                 ))}
           </Grid>
         </Container>

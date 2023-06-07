@@ -10,16 +10,16 @@ import {
 import React from "react";
 import "./PostBoardPage.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function PostCardPopover({
+export default function PostCardCartPopover({
   data,
   index,
   popoverOpen,
   setPopoverOpen,
   popoverAnchorEl,
-  addToCart,
-  //   handleAddToCart,
+  removeFromCart,
 }) {
   function handlePopoverClose() {
     setPopoverOpen(false);
@@ -53,7 +53,7 @@ export default function PostCardPopover({
                 <Grid item>
                   <CardMedia
                     className="profileImage"
-                    image="https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg"
+                    image={data.imageUrl}
                     style={{
                       width: 200,
                       height: 200,
@@ -145,10 +145,10 @@ export default function PostCardPopover({
                   <Button
                     size="medium"
                     onClick={() => {
-                      addToCart(data.id);
+                      removeFromCart(data.id);
                     }}
                   >
-                    <AddShoppingCartIcon
+                    <RemoveShoppingCartIcon
                       fontSize="large"
                       style={{ color: "var(--custom-white)" }}
                     />
