@@ -17,10 +17,7 @@ export default function PostBoardPage() {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
-          const response = await axios.get(
-            `http://localhost:9000/profile/user/${user.email}`
-          );
-          setCurUser(response.data.name);
+          setCurUser(user.email);
         } catch (error) {
           // Handle any errors
           console.error(error);
