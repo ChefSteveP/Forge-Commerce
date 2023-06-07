@@ -6,6 +6,7 @@ import axios from "axios";
 import PostCard from "./PostCard";
 import { auth } from "../../app/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
+import Navbar from "../../Components/Navbar";
 
 export default function PostBoardPage() {
   const [info, setInfo] = useState();
@@ -66,24 +67,27 @@ export default function PostBoardPage() {
   };
 
   return (
-    <div className="item-container">
-      <header className="postBoard__header">
-        <Header search={search} handleSearch={handleSearch} />
-      </header>
-      <main>
-        <Container maxWidth="fullWidth">
-          <Grid container className="cardGrid" spacing={3}>
-            {search === ""
-              ? info &&
-                info.map((data, index) => (
-                  <PostCard data={data} index={index} addToCart={addToCart} />
-                ))
-              : filteredInfo.map((data, index) => (
-                  <PostCard data={data} index={index} addToCart={addToCart} />
-                ))}
-          </Grid>
-        </Container>
-      </main>
-    </div>
+    <>
+      <Navbar />
+      <div className="item-container">
+        <header className="postBoard__header">
+          <Header search={search} handleSearch={handleSearch} />
+        </header>
+        <main>
+          <Container maxWidth="fullWidth">
+            <Grid container className="cardGrid" spacing={3}>
+              {search === ""
+                ? info &&
+                  info.map((data, index) => (
+                    <PostCard data={data} index={index} addToCart={addToCart} />
+                  ))
+                : filteredInfo.map((data, index) => (
+                    <PostCard data={data} index={index} addToCart={addToCart} />
+                  ))}
+            </Grid>
+          </Container>
+        </main>
+      </div>
+    </>
   );
 }

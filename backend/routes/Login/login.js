@@ -93,7 +93,10 @@ const {
 // add user
 router.post("/", async function (req, res) {
   try {
-    const ref = await addDoc(collection(db, "users"), req.body);
+    const ref = await addDoc(collection(db, "users"), {
+      ...req.body,
+      savedItems: [],
+    });
     return res.status(201).json({ message: "Post successful", id: ref.id });
   } catch (error) {
     return res.status(500).json(error);

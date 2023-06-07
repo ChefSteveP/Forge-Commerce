@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "@firebase/auth";
 import { Container, Grid } from "@mui/material";
 import PostCard from "../postBoardPage/PostCard";
 import PostCardCart from "../postBoardPage/PostCardCart.js";
+import Navbar from "../../Components/Navbar.js";
 
 export default function CartPage() {
   const [myCart, setMyCart] = useState([]);
@@ -57,21 +58,24 @@ export default function CartPage() {
   };
 
   return (
-    <div>
-      <h1>Saved Items</h1>
+    <>
+      <Navbar />
+      <div className="item-container">
+        <h1>Saved Items</h1>
 
-      <Container maxWidth="fullWidth">
-        <Grid container className="cardGrid" spacing={3}>
-          {myCart.map((data, index) => (
-            <PostCardCart
-              key={data.id}
-              data={data}
-              removeFromCart={removeFromCart}
-            />
-          ))}
-        </Grid>
-      </Container>
-    </div>
+        <Container maxWidth="fullWidth">
+          <Grid container className="cardGrid" spacing={3}>
+            {myCart.map((data, index) => (
+              <PostCardCart
+                key={data.id}
+                data={data}
+                removeFromCart={removeFromCart}
+              />
+            ))}
+          </Grid>
+        </Container>
+      </div>
+    </>
   );
 }
 

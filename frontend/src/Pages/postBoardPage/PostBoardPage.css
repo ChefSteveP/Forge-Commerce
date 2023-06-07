@@ -58,4 +58,5 @@
 .item-container {
   overflow-y: auto;
   max-height: 100vh;
+  margin-top: 100px;
 }
