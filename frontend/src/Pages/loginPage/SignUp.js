@@ -11,7 +11,12 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-export default function SignUp({ handleSignUp }) {
+export default function SignUp({
+  handleSignUp,
+  isError,
+  setSignUp,
+  setIsError,
+}) {
   return (
     <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
       <Box
@@ -78,6 +83,9 @@ export default function SignUp({ handleSignUp }) {
               />
             </Grid>
           </Grid>
+          <p style={{ color: "red" }}>
+            {isError ? "Error logging in. Please try again." : null}
+          </p>
           <Button
             type="submit"
             fullWidth
@@ -90,6 +98,22 @@ export default function SignUp({ handleSignUp }) {
             }}
           >
             Sign Up
+          </Button>
+          <Button
+            onClick={() => {
+              setSignUp(false);
+              setIsError(false);
+            }}
+            fullWidth
+            variant="contained"
+            sx={{
+              mt: 0,
+              mb: 2,
+              backgroundColor: "var(--dark-lilac)",
+              "&:hover": { backgroundColor: "var(--dark-lilac)" },
+            }}
+          >
+            Go Back To Sign In
           </Button>
         </Box>
       </Box>

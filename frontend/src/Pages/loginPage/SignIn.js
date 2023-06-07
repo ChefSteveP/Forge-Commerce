@@ -29,7 +29,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn({ handleLinkClick, handleSignIn }) {
+export default function SignIn({ handleLinkClick, handleSignIn, isError }) {
   return (
     <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
       <Box
@@ -72,6 +72,9 @@ export default function SignIn({ handleLinkClick, handleSignIn }) {
             id="password"
             autoComplete="current-password"
           />
+          <p style={{ color: "red" }}>
+            {isError ? "Error logging in. Please try again." : null}
+          </p>
           <FormControlLabel
             control={
               <Checkbox

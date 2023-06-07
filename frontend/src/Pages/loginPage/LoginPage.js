@@ -17,6 +17,7 @@ import { RouteLocations } from "../../app/RouteLocations";
 
 export default function LoginPage() {
   const [signUp, setSignUp] = useState(false);
+  const [isError, setIsError] = useState();
 
   const navigate = useNavigate();
 
@@ -27,20 +28,26 @@ export default function LoginPage() {
     setPersistence(auth, browserLocalPersistence)
       .then(() => {
         // Set the persistence option and continue with sign-in
-        signInWithEmailAndPassword(
+        return signInWithEmailAndPassword(
           auth,
           data.get("email"),
           data.get("password")
         );
+      })
+      .then(() => {
+        setIsError(false);
+      })
+      .then(() => {
         navigate(RouteLocations.postBoard);
       })
       .catch((error) => {
-        console.error(error);
+        setIsError(true);
       });
   };
 
   const handleLinkClick = (event) => {
     setSignUp(true);
+    setIsError(false);
   };
 
   const handleSignUp = (event) => {
@@ -51,18 +58,22 @@ export default function LoginPage() {
       auth,
       data.get("email"),
       data.get("password")
-    ).then((userCredential) => {
-      const user = userCredential.user;
+    )
+      .then((userCredential) => {
+        const user = userCredential.user;
 
-      const newUser = {
-        name: data.get("firstName") + data.get("lastName"),
-        email: data.get("email"),
-        uid: user.uid,
-      };
+        const newUser = {
+          name: data.get("firstName") + data.get("lastName"),
+          email: data.get("email"),
+          uid: user.uid,
+        };
 
-      axios.post("http://localhost:9000/login", newUser);
-    });
-    setSignUp(false);
+        axios.post("http://localhost:9000/login", newUser);
+        setSignUp(false);
+      })
+      .catch((error) => {
+        setIsError(true);
+      });
   };
 
   return (
@@ -74,7 +85,7 @@ export default function LoginPage() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(https://source.unsplash.com/random?wallpapers)",
+          backgroundImage: "url(https://i.redd.it/luafq8gd3r071.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
@@ -85,9 +96,18 @@ export default function LoginPage() {
         }}
       />
       {signUp === false ? (
-        <SignIn handleLinkClick={handleLinkClick} handleSignIn={handleSignIn} />
+        <SignIn
+          handleLinkClick={handleLinkClick}
+          handleSignIn={handleSignIn}
+          isError={isError}
+        />
       ) : (
-        <SignUp handleSignUp={handleSignUp} />
+        <SignUp
+          handleSignUp={handleSignUp}
+          isError={isError}
+          setSignUp={setSignUp}
+          setIsError={setIsError}
+        />
       )}
     </Grid>
   );

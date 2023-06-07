@@ -5,30 +5,47 @@ import { Container, Grid } from "@mui/material";
 import axios from "axios";
 import PostCard from "./PostCard";
 import { auth } from "../../app/firebase.js";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function PostBoardPage() {
   const [info, setInfo] = useState();
   const [search, setSearch] = useState("");
   const [filteredInfo, setFilteredInfo] = useState();
+  const [curUser, setCurUser] = useState("");
 
-  const userEmail = auth.currentUser ? auth.currentUser.email : null;
-  console.log(userEmail);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          const response = await axios.get(
+            `http://localhost:9000/profile/user/${user.email}`
+          );
+          setCurUser(response.data.name);
+        } catch (error) {
+          // Handle any errors
+          console.error(error);
+        }
+      }
+    });
 
-  let user = "Jacob Wald";
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/postBoard/${user}`
+          `http://localhost:9000/postBoard/${curUser}`
         );
         setInfo(response.data);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchData();
-  }, [user]);
+    if (curUser) fetchData();
+  }, [curUser]);
 
   function handleSearch(event) {
     setSearch(event.target.value);
