@@ -1,5 +1,6 @@
 const { initializeApp } = require("firebase/app");
 const { getFirestore } = require("firebase/firestore");
+const { getAuth } = require("firebase/auth");
 
 const serviceAccount = require("./permissions.json");
 
