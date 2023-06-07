@@ -8,9 +8,12 @@ import CartPage from "../Pages/cartPage/CartPage";
 import LoginPage from "../Pages/loginPage/LoginPage";
 import CreateAccountPage from "../Pages/createAccountPage/CreateAccountPage";
 import ErrorPage from "../Pages/errorPage/ErrorPage";
+import Navbar from "../Components/Navbar";
 
 function App() {
   return (
+    <>
+    <Navbar />
     <Routes>
       <Route path="/">
         <Route
@@ -36,6 +39,7 @@ function App() {
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
+    </>
   );
 }
 
