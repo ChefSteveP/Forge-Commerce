@@ -18,6 +18,7 @@ export default function PostCardPopover({
   popoverOpen,
   setPopoverOpen,
   popoverAnchorEl,
+  addToCart,
   //   handleAddToCart,
 }) {
   function handlePopoverClose() {
@@ -143,9 +144,9 @@ export default function PostCardPopover({
                 <Grid item>
                   <Button
                     size="medium"
-                    // onClick={() => {
-                    //   handleAddToCart();
-                    // }}
+                    onClick={() => {
+                      addToCart(data.id);
+                    }}
                   >
                     <AddShoppingCartIcon
                       fontSize="large"

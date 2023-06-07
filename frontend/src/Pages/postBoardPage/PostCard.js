@@ -13,7 +13,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import PostCardPopover from "./PostCardPopover";
 
-export default function PostCard({ data, index }) {
+export default function PostCard({ data, index, addToCart }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
 
@@ -21,6 +21,7 @@ export default function PostCard({ data, index }) {
     setPopoverAnchorEl(index);
     setPopoverOpen(true);
   }
+  console.log(data);
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -68,13 +69,14 @@ export default function PostCard({ data, index }) {
               popoverOpen={popoverOpen}
               setPopoverOpen={setPopoverOpen}
               popoverAnchorEl={popoverAnchorEl}
+              addToCart={addToCart}
               // handleAddToCart={handleAddToCart}
             />
             <Button
               size="medium"
-              // onClick={() => {
-              //   handleAddToCart();
-              // }}
+              onClick={() => {
+                addToCart(data.id);
+              }}
             >
               <AddShoppingCartIcon
                 fontSize="large"
