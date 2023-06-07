@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { styled, useTheme, ThemeProvider } from '@mui/system';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Stack from '@mui/material/Stack';
-import StoreIcon from '@mui/icons-material/Store';
-import PersonIcon from '@mui/icons-material/Person';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import LoginIcon from '@mui/icons-material/Login';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import theme from '../theme';
-import logo from '../assets/logo1.png';
-import { RouteLocations } from '../app/RouteLocations';
+import React, { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { styled, useTheme, ThemeProvider } from "@mui/system";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Stack from "@mui/material/Stack";
+import StoreIcon from "@mui/icons-material/Store";
+import PersonIcon from "@mui/icons-material/Person";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import LoginIcon from "@mui/icons-material/Login";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import theme from "../theme";
+import logo from "../assets/logo1.png";
+import { RouteLocations } from "../app/RouteLocations";
+import { Button } from "@mui/base";
+import { async } from "@firebase/util";
+import { auth } from "../app/firebase";
+import { useNavigate } from "react-router-dom";
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -33,60 +37,60 @@ const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
 }));
 
 const NavigationLink = styled(RouterLink)(({ theme }) => ({
-  textDecoration: 'none',
+  textDecoration: "none",
   color: theme.palette.text.primary,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 }));
 
 const ButtonWithBar = styled(IconButton)(({ theme }) => ({
-  display: 'flex',
-    flexDirection: 'column',
-  '&:hover': {
+  display: "flex",
+  flexDirection: "column",
+  "&:hover": {
     borderBottom: `2px solid ${theme.palette.primary.main}`,
   },
-  '&:active': {
+  "&:active": {
     borderBottom: `2px solid ${theme.palette.primary.main}`,
   },
 }));
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: theme.palette.secondary.main,
-  '&:hover': {
+  "&:hover": {
     backgroundColor: theme.palette.secondary.dark,
   },
   marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
-    width: 'auto',
+    width: "auto",
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
+  color: "inherit",
+  "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '20ch',
-      '&:focus': {
-        width: '30ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "20ch",
+      "&:focus": {
+        width: "30ch",
       },
     },
   },
@@ -95,13 +99,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const themeUsed = useTheme();
-  const matches = useMediaQuery(themeUsed.breakpoints.up('sm'));
+  const matches = useMediaQuery(themeUsed.breakpoints.up("sm"));
+
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    await auth.signOut();
+    navigate(RouteLocations.login);
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-
 
   const drawer = (
     <Stack spacing={2} sx={{ width: 150, padding: 4 }}>
@@ -117,16 +126,16 @@ const Navbar = () => {
         <ShoppingCartIcon />
         <Typography variant="body2">Cart</Typography>
       </NavigationLink>
-      <NavigationLink to={RouteLocations.login}>
+      <NavigationLink onClick={() => logout()}>
         <LoginIcon />
-        <Typography variant="body2">Login</Typography>
+        <Typography variant="body2">Logout</Typography>
       </NavigationLink>
     </Stack>
   );
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position='fixed'>
+      <AppBar position="fixed">
         <Toolbar>
           <img
             src={logo}
@@ -139,39 +148,42 @@ const Navbar = () => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder='Search…'
-              inputProps={{ 'aria-label': 'search' }}
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
             />
           </Search>
           {matches && (
             <>
-            <ButtonWithBar component={RouterLink} to={RouteLocations.postBoard}>
-            <StoreIcon />
-            <Typography variant="body2">Shop</Typography>
-            </ButtonWithBar>
+              <ButtonWithBar
+                component={RouterLink}
+                to={RouteLocations.postBoard}
+              >
+                <StoreIcon />
+                <Typography variant="body2">Shop</Typography>
+              </ButtonWithBar>
 
-            <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
-            <PersonIcon />
-            <Typography variant="body2">Profile</Typography>
-            </ButtonWithBar>
+              <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
+                <PersonIcon />
+                <Typography variant="body2">Profile</Typography>
+              </ButtonWithBar>
 
-            <ButtonWithBar component={RouterLink} to={RouteLocations.cart}>
-            <ShoppingCartIcon />
-            <Typography variant="body2">Cart</Typography>
-            </ButtonWithBar>
+              <ButtonWithBar component={RouterLink} to={RouteLocations.cart}>
+                <ShoppingCartIcon />
+                <Typography variant="body2">Cart</Typography>
+              </ButtonWithBar>
 
-            <ButtonWithBar component={RouterLink} to={RouteLocations.login}>
-            <LoginIcon />
-            <Typography variant="body2">Login</Typography>
-            </ButtonWithBar>
+              <ButtonWithBar onClick={() => logout()}>
+                <LoginIcon />
+                <Typography variant="body2">Logout</Typography>
+              </ButtonWithBar>
             </>
           )}
           {!matches && (
             <IconButton
-              size='large'
-              edge='end'
-              color='inherit'
-              aria-label='open drawer'
+              size="large"
+              edge="end"
+              color="inherit"
+              aria-label="open drawer"
               sx={{ ml: 2 }}
               onClick={handleDrawerToggle}
             >
@@ -181,7 +193,7 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
       <SwipeableDrawer
-        anchor='right'
+        anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         onOpen={handleDrawerToggle}
