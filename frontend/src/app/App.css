@@ -20,8 +20,6 @@
 
 body {
   background-color: var(--custom-white);
-  /* overflow: hidden; */
-  overflow: hidden;
-  /* min-height: 150vh; */
-  
+ 
+
 }

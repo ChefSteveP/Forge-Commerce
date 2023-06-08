@@ -173,7 +173,7 @@ export default function PostCardPopover({
                 >
                   <Grid item>
                     <Typography className="infoTextColor" variant="body2">
-                      People Saved
+                      Saved By
                     </Typography>
                   </Grid>
                   <Grid item style={{ marginLeft: "auto" }}>

@@ -14,10 +14,12 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { RouteLocations } from "../../app/RouteLocations";
+import backgroundImage from "../loginPage/image.jpg";
 
 export default function LoginPage() {
   const [signUp, setSignUp] = useState(false);
   const [isError, setIsError] = useState();
+  const [popoverOpen, setPopoverOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -69,7 +71,7 @@ export default function LoginPage() {
         };
 
         axios.post("http://localhost:9000/login", newUser);
-        setSignUp(false);
+        setPopoverOpen(true);
       })
       .catch((error) => {
         setIsError(true);
@@ -85,7 +87,7 @@ export default function LoginPage() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(https://i.redd.it/luafq8gd3r071.jpg)",
+          backgroundImage: `url(${backgroundImage})`,
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
@@ -107,6 +109,8 @@ export default function LoginPage() {
           isError={isError}
           setSignUp={setSignUp}
           setIsError={setIsError}
+          popoverOpen={popoverOpen}
+          setPopoverOpen={setPopoverOpen}
         />
       )}
     </Grid>

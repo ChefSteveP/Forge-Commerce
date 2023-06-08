@@ -10,7 +10,7 @@ import {
   Card,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import PostCardPopover from "./PostCardPopover";
 import axios from "axios";
 
@@ -90,7 +90,7 @@ export default function PostCard({ data, index, addToCart }) {
                 addToCart(data.id);
               }}
             >
-              <AddShoppingCartIcon
+              <BookmarkAddIcon
                 fontSize="large"
                 style={{ color: "var(--custom-white)" }}
               />
