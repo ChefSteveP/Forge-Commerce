@@ -23,7 +23,6 @@ export default function PostCard({ data, index, addToCart }) {
     setPopoverAnchorEl(index);
     setPopoverOpen(true);
   }
-  console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {

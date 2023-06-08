@@ -13,6 +13,7 @@ export default function PostBoardPage() {
   const [search, setSearch] = useState("");
   const [filteredInfo, setFilteredInfo] = useState();
   const [curUser, setCurUser] = useState("");
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -37,7 +38,7 @@ export default function PostBoardPage() {
         const response = await axios.get(
           `http://localhost:9000/postBoard/${curUser}`
         );
-        setInfo(response.data);
+        setInfo(response.data.filter((info) => !info.isSold));
       } catch (error) {
         console.log(error);
       }
@@ -45,45 +46,64 @@ export default function PostBoardPage() {
     if (curUser) fetchData();
   }, [curUser]);
 
-  function handleSearch(event) {
-    setSearch(event.target.value);
-    setFilteredInfo(
-      info.filter((item) =>
-        item.name.toLowerCase().includes(event.target.value.toLowerCase())
-      )
-    );
-  }
-
   const addToCart = async (id) => {
     try {
       const response = await axios.post(`http://localhost:9000/cart/add`, {
         email: curUser,
         id: id,
       });
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
+
+  function handleSearch(event) {
+    setSearch(event.target.value);
+  }
+
+  function applyFilters(info) {
+    const { condition, state } = filters;
+    const nameMatch = search
+      ? info.name.toLowerCase().includes(search.toLowerCase())
+      : true;
+    const conditionMatch = condition ? info.condition === condition : true;
+    const stateMatch = state ? info.state === state : true;
+    return nameMatch && conditionMatch && stateMatch;
+  }
+
+  useEffect(() => {
+    if (info) {
+      setFilteredInfo(info.filter(applyFilters));
+    }
+  }, [info, filters]);
+
+  const filteredData = search
+    ? filteredInfo.filter(applyFilters)
+    : info?.filter(applyFilters);
+
+  if (filters.priceSort === "price-ascending") {
+    filteredData.sort((a, b) => a.price - b.price);
+  } else if (filters.priceSort === "price-descending") {
+    filteredData.sort((a, b) => b.price - a.price);
+  }
 
   return (
     <>
       <Navbar />
       <div className="item-container">
         <header className="page-title">
-          <Header search={search} handleSearch={handleSearch} />
+          <Header
+            search={search}
+            handleSearch={handleSearch}
+            setFilters={setFilters}
+          />
         </header>
         <main>
           <Container maxWidth="fullWidth">
             <Grid container className="cardGrid" spacing={3}>
-              {search === ""
-                ? info &&
-                  info.map((data, index) => (
-                    <PostCard data={data} index={index} addToCart={addToCart} />
-                  ))
-                : filteredInfo.map((data, index) => (
-                    <PostCard data={data} index={index} addToCart={addToCart} />
-                  ))}
+              {filteredData?.map((data, index) => (
+                <PostCard data={data} index={index} addToCart={addToCart} />
+              ))}
             </Grid>
           </Container>
         </main>
