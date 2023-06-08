@@ -25,7 +25,7 @@ export default function Header({ search, handleSearch, setFilters }) {
           variant="h2"
           gutterBottom
           className="page-title"
-          style={{ marginLeft: "0px" }}
+          style={{ marginLeft: "0px", marginTop: "125px" }}
         >
           Post Board
         </Typography>
