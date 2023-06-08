@@ -118,7 +118,7 @@ export default function FilterItems({
           padding: "20px",
         }}
       >
-        <Grid container style={{ marginBottom: "20px" }}>
+        <Grid container style={{ marginBottom: "20px" }} spacing={2}>
           <Grid item xs={12} sm={6}>
             <Select
               label="Condition"
