@@ -8,8 +8,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import SellIcon from "@mui/icons-material/Sell";
 import SellItem from "../../Components/sellItem";
 
-
-
 function ProfileCard() {
   const [user, setUser] = useState(null);
 
@@ -59,23 +57,20 @@ function ProfileCard() {
 
   useEffect(() => {
     const fetchEarnings = async () => {
-      
-        const response = await fetch(
-          `http://localhost:9000/profile/earnings/${curUser}`
-        );
-        const data = await response.json();
-        if (response.ok) {
-          setEarnings(data.earnings);
-        } else {
-          console.error("Error fetching earnings:", data);
-        }
-      
+      const response = await fetch(
+        `http://localhost:9000/profile/earnings/${curUser}`
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setEarnings(data.earnings);
+      } else {
+        console.error("Error fetching earnings:", data);
+      }
     };
     if (curUser) {
       fetchEarnings();
     }
   }, [curUser]);
-  
 
   return (
     <Box>
@@ -84,6 +79,7 @@ function ProfileCard() {
           backgroundColor: "light-lilac",
           color: "black",
           width: "100%",
+          marginLeft: "0px",
           maxWidth: 345,
           marginBottom: "1em",
           "@media (max-width:600px)": {
@@ -110,7 +106,7 @@ function ProfileCard() {
           <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
             Earnings: ${earnings}
           </Typography>
-          
+
           <Button
             size="medium"
             onClick={(event) => {
@@ -124,8 +120,6 @@ function ProfileCard() {
             List an Item
           </Button>
           <SellItem popoverOpen={popoverOpen} setPopoverOpen={setPopoverOpen} />
-        
-          
         </CardContent>
       </Card>
     </Box>
@@ -133,4 +127,3 @@ function ProfileCard() {
 }
 
 export default ProfileCard;
-
