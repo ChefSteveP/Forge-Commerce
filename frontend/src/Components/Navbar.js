@@ -12,15 +12,12 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Stack from "@mui/material/Stack";
 import StoreIcon from "@mui/icons-material/Store";
 import PersonIcon from "@mui/icons-material/Person";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LoginIcon from "@mui/icons-material/Login";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import theme from "../theme";
 import logo from "../assets/logo1.png";
 import { RouteLocations } from "../app/RouteLocations";
-import { Button } from "@mui/base";
-import { async } from "@firebase/util";
 import { auth } from "../app/firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -123,8 +120,8 @@ const Navbar = () => {
         <Typography variant="body2">Profile</Typography>
       </NavigationLink>
       <NavigationLink to={RouteLocations.cart}>
-        <ShoppingCartIcon />
-        <Typography variant="body2">Cart</Typography>
+        <BookmarkIcon />
+        <Typography variant="body2">Saved</Typography>
       </NavigationLink>
       <NavigationLink onClick={() => logout()}>
         <LoginIcon />
@@ -168,8 +165,8 @@ const Navbar = () => {
               </ButtonWithBar>
 
               <ButtonWithBar component={RouterLink} to={RouteLocations.cart}>
-                <ShoppingCartIcon />
-                <Typography variant="body2">Cart</Typography>
+                <BookmarkIcon />
+                <Typography variant="body2">Saved</Typography>
               </ButtonWithBar>
 
               <ButtonWithBar onClick={() => logout()}>
