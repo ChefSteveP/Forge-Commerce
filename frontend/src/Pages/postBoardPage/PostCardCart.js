@@ -10,7 +10,7 @@ import {
   Card,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import axios from "axios";
 
 import PostCardPopover from "./PostCardPopover";
@@ -92,7 +92,7 @@ export default function PostCardCart({ data, index, removeFromCart }) {
                 removeFromCart(data.id);
               }}
             >
-              <RemoveShoppingCartIcon
+              <BookmarkRemoveIcon
                 fontSize="large"
                 style={{ color: "var(--custom-white)" }}
               />
