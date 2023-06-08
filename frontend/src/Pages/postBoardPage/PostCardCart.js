@@ -57,12 +57,12 @@ export default function PostCardCart({ data, index, removeFromCart }) {
             <Typography
               className="textColor"
               gutterBottom
-              variant="h5"
+              variant="h4"
               component="div"
             >
               {data?.name}
             </Typography>
-            <Typography className="textColor" variant="body2">
+            <Typography className="textColor" variant="h5">
               ${data?.price}
             </Typography>
           </CardContent>
@@ -98,31 +98,32 @@ export default function PostCardCart({ data, index, removeFromCart }) {
               />
             </Button>
           </CardActions>
-          <Button
-            variant="filled"
-            style={{
-              backgroundColor: "white",
-              marginBottom: "10px",
-            }}
-            onClick={() => {
-              window.location.href = `mailto:${data.aliasEmail}?subject=${data.name} Inquiry&body=Hi, I am interested in your item.`;
-            }}
-          >
-            Contact Seller
-          </Button>
           {data.isSold ? (
-            <h2
+            <Button
+              disabled
+              variant="filled"
               style={{
                 backgroundColor: "white",
+                marginBottom: "10px",
                 color: "red",
-                padding: "5px",
-                borderRadius: "5px",
               }}
-              className="sold-tag"
             >
               Sold
-            </h2>
-          ) : null}
+            </Button>
+          ) : (
+            <Button
+              variant="filled"
+              style={{
+                backgroundColor: "white",
+                marginBottom: "10px",
+              }}
+              onClick={() => {
+                window.location.href = `mailto:${data.aliasEmail}?subject=${data.name} Inquiry&body=Hi, I am interested in your item.`;
+              }}
+            >
+              Contact Seller
+            </Button>
+          )}
         </Card>
       </Card>
     </Grid>
