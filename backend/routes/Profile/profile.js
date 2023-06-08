@@ -98,4 +98,26 @@ router.put("/sell/:listingID", async function (req, res) {
   }
 });
 
+// get all listings for specific user that is sold and add their price 
+router.get("/earnings/:username", async function (req, res) {
+  try {
+    const q = query(
+      collection(db, "products"),
+      where("listedby", "==", req.params.username),
+      where("isSold", "==", true)
+    );
+    const querySnapshot = await getDocs(q);
+    let totalEarnings = 0;
+    querySnapshot.forEach((doc) => {
+      totalEarnings += doc.data().price;
+    });
+
+    return res.status(200).json({ earnings: totalEarnings });
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+});
+
+
+
 module.exports = router;
