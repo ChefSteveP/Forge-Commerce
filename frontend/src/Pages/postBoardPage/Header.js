@@ -23,6 +23,7 @@ export default function Header({ search, handleSearch, setFilters }) {
       <div>
         <Typography
           variant="h2"
+          fontWeight={"bold"}
           gutterBottom
           className="page-title"
           style={{ marginLeft: "0px", marginTop: "125px" }}

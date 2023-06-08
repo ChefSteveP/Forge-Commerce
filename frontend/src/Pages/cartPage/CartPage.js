@@ -4,7 +4,6 @@ import { auth } from "../../app/firebase.js";
 import axios from "axios";
 import { onAuthStateChanged } from "@firebase/auth";
 import { Container, Grid, Typography } from "@mui/material";
-import PostCard from "../postBoardPage/PostCard";
 import PostCardCart from "../postBoardPage/PostCardCart.js";
 import Navbar from "../../Components/Navbar.js";
 import "./CartPage.css";
@@ -62,7 +61,18 @@ export default function CartPage() {
     <>
       <Navbar />
       <div className="item-container">
-        <h1 className="page-title">Saved Items</h1>
+        <div className="page-title">
+          <Typography
+            variant="h2"
+            fontWeight={"bold"}
+            gutterBottom
+            className="page-title"
+            style={{ marginLeft: "0px", marginTop: "125px" }}
+          >
+            Saved Items
+          </Typography>
+        </div>
+
         <Container maxWidth="fullWidth">
           <Grid container className="cardGrid" spacing={3}>
             {myCart.map((data, index) => (

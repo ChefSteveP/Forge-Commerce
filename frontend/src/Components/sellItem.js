@@ -119,6 +119,7 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
         setPrice("");
         setState("");
         setSelectedImage(null);
+        window.location.reload();
       } catch (error) {
         console.error("Error uploading image", error);
       }
