@@ -57,10 +57,11 @@ export default function PostCard({ data, index, addToCart }) {
               gutterBottom
               variant="h5"
               component="div"
+              style={{ fontWeight: "bold" }}
             >
               {data?.name}
             </Typography>
-            <Typography className="textColor" variant="body2">
+            <Typography className="textColor" variant="h5">
               ${data?.price}
             </Typography>
           </CardContent>
