@@ -33,7 +33,6 @@ router.get("/:email", async function (req, res) {
       itemIDs.map(async (itemID) => {
         const itemRef = doc(db, "products", itemID);
         const itemDoc = await getDoc(itemRef);
-        console.log("data:", itemDoc.data());
         if (itemDoc.exists()) {
           response.push({ ...itemDoc.data(), id: itemDoc.id });
           console.log("new response:", response);

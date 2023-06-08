@@ -8,6 +8,10 @@ import {
   CardActions,
   Button,
   Card,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -20,6 +24,8 @@ export default function EditablePostCard({ data, index, addToCart }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
   const [itemOwner, setItemOwner] = useState("");
+  const [sellOpen, setSellOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   function handleViewInfoButtonClick(event, index) {
     setPopoverAnchorEl(index);
@@ -40,6 +46,34 @@ export default function EditablePostCard({ data, index, addToCart }) {
     };
     if (data.listedby) fetchData();
   }, [data]);
+
+  const handleMarkAsSoldButton = () => {
+    setSellOpen(true);
+  };
+
+  const confirmSell = async () => {
+    // Perform the action on confirmation
+    await axios.put(`http://localhost:9000/profile/sell/${data.id}`);
+    setSellOpen(false);
+  };
+
+  const cancelSell = () => {
+    setSellOpen(false);
+  };
+
+  const handleDeleteButton = () => {
+    setDeleteOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    // Perform the action on confirmation
+    axios.delete(`http://localhost:9000/profile/${data.id}`);
+    setDeleteOpen(false);
+  };
+
+  const cancelDelete = () => {
+    setDeleteOpen(false);
+  };
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -82,7 +116,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
               </Button>
               <Button
                 size="medium"
-                // onClick={(event) => handleViewInfoButtonClick(event, index)}
+                onClick={handleDeleteButton}
                 style={{ color: "white" }}
               >
                 <DeleteIcon
@@ -90,6 +124,56 @@ export default function EditablePostCard({ data, index, addToCart }) {
                   style={{ color: "var(--custom-white)", marginRight: "5px" }}
                 />
               </Button>
+              <Dialog open={deleteOpen} onClose={cancelDelete}>
+                <DialogTitle>Confirmation</DialogTitle>
+                <DialogContent>
+                  <p>Are you sure you want to delete this item?</p>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={confirmDelete}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Confirm
+                  </Button>
+                  <Button
+                    onClick={cancelDelete}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Cancel
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              <Button
+                onClick={handleMarkAsSoldButton}
+                style={{ color: "white" }}
+              >
+                Sold?
+              </Button>
+              <Dialog open={sellOpen} onClose={cancelSell}>
+                <DialogTitle>Confirmation</DialogTitle>
+                <DialogContent>
+                  <p>Are you sure you want to mark this item as sold?</p>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={confirmSell}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Confirm
+                  </Button>
+                  <Button
+                    onClick={cancelSell}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Cancel
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </div>
 
             <EditablePostCardPopover

@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { Container, Grid, Typography } from "@mui/material";
 
 import EditablePostCard from "./EditablePostCard.js";
+import SoldPostCard from "./SoldPostCard.js";
 
 const MyListings = () => {
   const [listings, setListings] = useState([]);
@@ -81,9 +82,17 @@ const MyListings = () => {
       {username && <h2 style={{ fontWeight: "bolder" }}>My Listings</h2>}
       <Container maxWidth="fullWidth">
         <Grid container className="cardGrid" spacing={3}>
-          {listings.map((listing, index) => (
-            <EditablePostCard data={listing} />
-          ))}
+          {listings.map((listing, index) =>
+            listing.isSold ? null : <EditablePostCard data={listing} />
+          )}
+        </Grid>
+      </Container>
+      {username && <h2 style={{ fontWeight: "bolder" }}>Sold Listings</h2>}
+      <Container maxWidth="fullWidth">
+        <Grid container className="cardGrid" spacing={3}>
+          {listings.map((listing, index) =>
+            listing.isSold ? <SoldPostCard data={listing} /> : null
+          )}
         </Grid>
       </Container>
     </Box>

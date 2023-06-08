@@ -85,4 +85,17 @@ router.delete("/:listingID", async function (req, res) {
   }
 });
 
+// sell listing
+router.put("/sell/:listingID", async function (req, res) {
+  try {
+    await updateDoc(doc(db, "products", req.params.listingID), {
+      isSold: true,
+    });
+    return res.status(200).json({ message: "item sold" });
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json(error);
+  }
+});
+
 module.exports = router;
