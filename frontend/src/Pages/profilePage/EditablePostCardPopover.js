@@ -97,7 +97,7 @@ export default function EditablePostCardPopover({
         name: name,
         condition: condition,
         description: description,
-        price: price,
+        price: Number(price),
         state: state,
       })
       .then(window.location.reload())
