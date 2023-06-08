@@ -113,7 +113,12 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
             "Content-Type": "multipart/form-data",
           },
         });
-        // Handle success response
+        setName("");
+        setCondition("");
+        setDescription("");
+        setPrice("");
+        setState("");
+        setSelectedImage(null);
       } catch (error) {
         console.error("Error uploading image", error);
       }

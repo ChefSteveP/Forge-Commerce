@@ -73,6 +73,18 @@ router.post("/", upload.single("image"), async function (req, res) {
 
     const imageUrl = s3UploadResponse.Location;
 
+    let aliasEmail = "";
+    // get user document from email field
+    const q = query(
+      collection(db, "users"),
+      where("email", "==", req.body.listedby)
+    );
+    const querySnapshot = await getDocs(q);
+    // get aliasEmail field
+    querySnapshot.forEach((doc) => {
+      aliasEmail = doc.data().aliasEmail;
+    });
+
     // Store the image URL and other fields in the Firebase database
     const newDocRef = await addDoc(collection(db, "products"), {
       ...req.body,
@@ -80,6 +92,7 @@ router.post("/", upload.single("image"), async function (req, res) {
       isSold: false,
       price: Number(req.body.price),
       amountSaved: Number(req.body.amountSaved),
+      aliasEmail,
     });
 
     return res

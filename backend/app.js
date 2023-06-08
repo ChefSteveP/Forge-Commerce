@@ -10,6 +10,7 @@ var profileRouter = require("./routes/Profile/profile");
 var postsRouter = require("./routes/PostBoard/postBoard");
 var loginRouter = require("./routes/Login/login");
 var cartRouter = require("./routes/Cart/cart");
+var publicRouter = require("./routes/Public/public");
 
 var app = express();
 
@@ -43,7 +44,7 @@ app.use("/users", usersRouter);
 app.use("/profile", profileRouter);
 app.use("/postBoard", postsRouter);
 app.use("/login", loginRouter);
-// app.use("/cart", cartRouter);
+app.use("/public", publicRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

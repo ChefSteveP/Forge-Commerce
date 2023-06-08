@@ -10,12 +10,15 @@ import {
   Typography,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import SignUpPopover from "./SignUpPopover";
 
 export default function SignUp({
   handleSignUp,
   isError,
   setSignUp,
   setIsError,
+  popoverOpen,
+  setPopoverOpen,
 }) {
   return (
     <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -99,6 +102,12 @@ export default function SignUp({
           >
             Sign Up
           </Button>
+          <SignUpPopover
+            setSignUp={setSignUp}
+            popoverOpen={popoverOpen}
+            setPopoverOpen={setPopoverOpen}
+            setIsError={setIsError}
+          />
           <Button
             onClick={() => {
               setSignUp(false);
