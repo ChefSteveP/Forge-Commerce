@@ -55,6 +55,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
     // Perform the action on confirmation
     await axios.put(`http://localhost:9000/profile/sell/${data.id}`);
     setSellOpen(false);
+    window.location.reload();
   };
 
   const cancelSell = () => {
