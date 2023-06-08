@@ -13,7 +13,6 @@ import InfoIcon from "@mui/icons-material/Info";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import axios from "axios";
 
-import PostCardPopover from "./PostCardPopover";
 import PostCardCartPopover from "./PostCardCartPopover";
 
 export default function PostCardCart({ data, index, removeFromCart }) {

@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import React from "react";
 import "./PostBoardPage.css";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -174,7 +173,7 @@ export default function PostCardCartPopover({
                 >
                   <Grid item>
                     <Typography className="infoTextColor" variant="body2">
-                      People Saved
+                      Saved By
                     </Typography>
                   </Grid>
                   <Grid item style={{ marginLeft: "auto" }}>
