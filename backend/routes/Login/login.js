@@ -15,85 +15,44 @@ const {
   deleteDoc,
 } = require("firebase/firestore");
 
-// let currentUser = {};
-// onAuthStateChanged(auth, (user) => {
-//   currentUser = user;
-// });
+const { MailSlurp } = require('mailslurp-client');
+const fetchApi = require('isomorphic-fetch');
+const {AliasControllerApi,Configuration} = require('mailslurp-client');
 
-// // Route for user login
-// router.post("/", async function (req, res) {
-//   try {
-//     const { email, password } = req.body;
-//     const userCredential = await signInWithEmailAndPassword(
-//       auth,
-//       email,
-//       password
-//     );
-//     const user = userCredential.user;
-//     return res.status(200).json({ message: "Login successful", user: user });
-//   } catch (error) {
-//     return res.status(500).json(error);
-//   }
-// });
+// setup mailslurp config
+const config = new Configuration({ apiKey: process.env.MAILSLURP_API_KEY, fetchApi });
 
-// // Route for user logout
-// router.get("/logout", async function (req, res) {
-//   try {
-//     await signOut(auth);
-//     return res.status(200).json({ message: "Logout successful" });
-//   } catch (error) {
-//     return res.status(500).json(error);
-//   }
-// });
+// create controller
 
-// // Route for creating a new user
-// router.post("/create-user", async function (req, res) {
-//   try {
-//     const { email, password } = req.body;
-//     const userCredential = await createUserWithEmailAndPassword(
-//       auth,
-//       email,
-//       password
-//     );
-//     const user = userCredential.user;
-//     return res
-//       .status(201)
-//       .json({ message: "User created successfully", user: user });
-//   } catch (error) {
-//     return res.status(500).json(error);
-//   }
-// });
+const aliasControllerApi = new AliasControllerApi(config);
 
-// // Route to get the current user
-// router.get("/current-user", (req, res) => {
-//   const user = auth.currentUser;
+async function createAliasEmail(mail) {
+    try{
+        const alias = await aliasControllerApi.createAlias({
+            createAliasOptions: {
+            emailAddress: mail,
+            useThreads: true,
+            },
+        });
 
-//   if (user) {
-//     // User is authenticated
-//     const { uid, email } = user;
-//     return res.status(200).json({ uid, email });
-//   } else {
-//     // User is not authenticated
-//     return res.status(401).json({ message: "User not authenticated" });
-//   }
-// });
+        console.log('creation', alias.emailAddress);
+        return alias.emailAddress;
+    } catch (error) {
+        console.error('Error creating alias:', error.message);
+    } 
+}
 
-// // get all users
-// router.get("/", async function (req, res) {
-//   try {
-//     const response = await getDocs(collection(db, "users"));
-//     let ret = [];
-//     response.forEach((doc) => ret.push({ ...doc.data(), id: doc.id }));
-//     return res.status(200).json(ret);
-//   } catch (error) {
-//     return res.status(404).json(error);
-//   }
-// });
-
+// add user
 // add user
 router.post("/", async function (req, res) {
   try {
-    const ref = await addDoc(collection(db, "users"), req.body);
+    const alias = await createAliasEmail(req.body.email);
+    console.log('inside post: ', alias)
+    const ref = await addDoc(collection(db, "users"), {
+      ...req.body,
+      savedItems: [],
+      aliasEmail : alias,
+    });
     return res.status(201).json({ message: "Post successful", id: ref.id });
   } catch (error) {
     return res.status(500).json(error);
