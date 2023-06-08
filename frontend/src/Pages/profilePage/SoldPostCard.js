@@ -13,8 +13,6 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import axios from "axios";
 import SoldEditablePostCardPopover from "./SoldEditablePostCardPopover";
 import EditIcon from "@mui/icons-material/Edit";

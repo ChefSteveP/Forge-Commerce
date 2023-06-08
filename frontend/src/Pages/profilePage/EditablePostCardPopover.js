@@ -12,10 +12,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import "../postBoardPage/PostBoardPage.css";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
-import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import axios from "axios";
 
