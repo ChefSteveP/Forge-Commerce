@@ -37,14 +37,12 @@ export default function Header({ search, handleSearch, setFilters }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
-          flexWrap: "nowrap",
+          flexWrap: "wrap",
         }}
         spacing={2}
       >
         <Grid item>
-          <SearchIcon></SearchIcon>
-        </Grid>
-        <Grid item>
+          <SearchIcon style={{ marginRight: "10px" }}></SearchIcon>
           <TextField
             value={search}
             placeholder="Find listing"
