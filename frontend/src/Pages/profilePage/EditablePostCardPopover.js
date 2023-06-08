@@ -6,6 +6,7 @@ import {
   Typography,
   CardMedia,
   Button,
+  Backdrop,
   TextField,
   Select,
   MenuItem,
@@ -105,237 +106,243 @@ export default function EditablePostCardPopover({
   };
 
   return (
-    <Popover
-      open={popoverOpen && popoverAnchorEl === index}
-      onClose={handlePopoverClose}
-      anchorReference="anchorPosition"
-      anchorPosition={{
-        top: window.innerHeight / 2,
-        left: window.innerWidth / 2,
-      }}
-      transformOrigin={{
-        vertical: "center",
-        horizontal: "center",
-      }}
-    >
-      <Container
-        maxWidth="fullWidth"
-        style={{
-          backgroundColor: "var(--light-lilac)",
-          padding: "0px",
+    <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={popoverOpen}
+        onClick={handlePopoverClose}
+      >
+      <Popover
+        open={popoverOpen && popoverAnchorEl === index}
+        onClose={handlePopoverClose}
+        anchorReference="anchorPosition"
+        anchorPosition={{
+          top: window.innerHeight / 2,
+          left: window.innerWidth / 2,
+        }}
+        transformOrigin={{
+          vertical: "center",
+          horizontal: "center",
         }}
       >
-        <CardContent align="center">
-          <Grid container spacing={2} direction="column">
-            <Grid item>
-              <Grid container justifyContent="center" alignItems="center">
-                <Grid item>
-                  <CardMedia
-                    className="profileImage"
-                    image={data.imageUrl}
-                    style={{
-                      width: 200,
-                      height: 200,
-                    }}
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Grid
-                container
-                className="infoContainer"
-                direction="column"
-                spacing={1}
-              >
-                <Grid
-                  className="infoItem"
-                  item
-                  container
-                  justifyContent="space-between"
-                >
+        <Container
+          maxWidth="fullWidth"
+          style={{
+            backgroundColor: "var(--light-lilac)",
+            padding: "0px",
+          }}
+        >
+          <CardContent align="center">
+            <Grid container spacing={2} direction="column">
+              <Grid item>
+                <Grid container justifyContent="center" alignItems="center">
                   <Grid item>
-                    <Typography className="infoTextColor" variant="body2">
-                      Name
-                    </Typography>
-                  </Grid>
-                  <Grid item style={{ marginLeft: "auto" }}>
-                    <TextField
-                      defaultValue={data.name}
-                      label="Item Name"
-                      variant="outlined"
-                      onChange={(e) => setName(e.target.value)}
-                      style={{ width: "200px" }}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid
-                  className="infoItem"
-                  item
-                  container
-                  justifyContent="space-between"
-                >
-                  <Grid item>
-                    <Typography className="infoTextColor" variant="body2">
-                      Description
-                    </Typography>
-                  </Grid>
-                  <Grid item style={{ marginLeft: "auto" }}>
-                    <TextField
-                      defaultValue={data.description}
-                      label="Item Description"
-                      variant="outlined"
-                      onChange={(e) => setDescription(e.target.value)}
-                      style={{ width: "200px" }}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid
-                  className="infoItem"
-                  item
-                  container
-                  justifyContent="space-between"
-                >
-                  <Grid item>
-                    <Typography className="infoTextColor" variant="body2">
-                      Price
-                    </Typography>
-                  </Grid>
-                  <Grid item style={{ marginLeft: "auto" }}>
-                    <TextField
-                      type="number"
-                      defaultValue={data.price}
-                      label="Price"
-                      variant="outlined"
-                      onChange={(e) => setPrice(e.target.value)}
-                      style={{ width: "200px" }}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid
-                  className="infoItem"
-                  item
-                  container
-                  justifyContent="space-between"
-                >
-                  <Grid item>
-                    <Typography className="infoTextColor" variant="body2">
-                      Condition
-                    </Typography>
-                  </Grid>
-                  <Grid item style={{ marginLeft: "auto" }}>
-                    <Select
-                      label="Condition"
-                      value={condition}
-                      displayEmpty
-                      onChange={(e) => setCondition(e.target.value)}
-                      fullWidth
-                      required
-                      margin="normal"
-                      inputProps={{
-                        style: {
-                          // color: "var(--custom-white)",
-                          borderColor: "var(--custom-white)",
-                        },
-                      }}
+                    <CardMedia
+                      className="profileImage"
+                      image={data.imageUrl}
                       style={{
-                        // color: "var(--custom-white)",
-                        borderColor: "var(--custom-white)",
-                        width: "200px",
-                        marginLeft: "30px",
-                        textAlign: "left",
+                        width: 200,
+                        height: 200,
                       }}
-                    >
-                      <MenuItem value="" disabled>
-                        Select Condition
-                      </MenuItem>
-                      <MenuItem value="well-worn">Well Worn</MenuItem>
-                      <MenuItem value="minimal-use">Minimal Use</MenuItem>
-                      <MenuItem value="brand-new">Brand New</MenuItem>
-                    </Select>
-                  </Grid>
-                </Grid>
-                <Grid
-                  className="infoItem"
-                  item
-                  container
-                  justifyContent="space-between"
-                >
-                  <Grid item>
-                    <Typography className="infoTextColor" variant="body2">
-                      State
-                    </Typography>
-                  </Grid>
-                  <Grid item style={{ marginLeft: "auto" }}>
-                    <Select
-                      label="State"
-                      value={state}
-                      displayEmpty
-                      onChange={(e) => setState(e.target.value)}
-                      fullWidth
-                      required
-                      margin="normal"
-                      inputProps={{
-                        style: {
-                          // color: "var(--custom-white)",
-                          borderColor: "var(--custom-white)",
-                        },
-                      }}
-                      style={{
-                        // color: "var(--custom-white)",
-                        borderColor: "var(--custom-white)",
-                        width: "200px",
-                        textAlign: "left",
-                      }}
-                    >
-                      <MenuItem value="" disabled>
-                        Select State
-                      </MenuItem>
-                      {states.map((stateName) => (
-                        <MenuItem key={stateName} value={stateName}>
-                          {stateName}
-                        </MenuItem>
-                      ))}
-                    </Select>
+                    />
                   </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid item>
-              <Grid
-                container
-                className="infoContainer"
-                direction="row"
-                justifyContent={"center"}
-                spacing={4}
-              >
-                <Grid item>
-                  <Button
-                    size="medium"
-                    onClick={() => {
-                      editListing();
-                    }}
+              <Grid item>
+                <Grid
+                  container
+                  className="infoContainer"
+                  direction="column"
+                  spacing={1}
+                >
+                  <Grid
+                    className="infoItem"
+                    item
+                    container
+                    justifyContent="space-between"
                   >
-                    <CheckIcon
-                      fontSize="large"
-                      style={{ color: "var(--custom-white)" }}
-                    />
-                  </Button>
+                    <Grid item>
+                      <Typography className="infoTextColor" variant="body2">
+                        Name
+                      </Typography>
+                    </Grid>
+                    <Grid item style={{ marginLeft: "auto" }}>
+                      <TextField
+                        defaultValue={data.name}
+                        label="Item Name"
+                        variant="outlined"
+                        onChange={(e) => setName(e.target.value)}
+                        style={{ width: "200px" }}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    className="infoItem"
+                    item
+                    container
+                    justifyContent="space-between"
+                  >
+                    <Grid item>
+                      <Typography className="infoTextColor" variant="body2">
+                        Description
+                      </Typography>
+                    </Grid>
+                    <Grid item style={{ marginLeft: "auto" }}>
+                      <TextField
+                        defaultValue={data.description}
+                        label="Item Description"
+                        variant="outlined"
+                        onChange={(e) => setDescription(e.target.value)}
+                        style={{ width: "200px" }}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    className="infoItem"
+                    item
+                    container
+                    justifyContent="space-between"
+                  >
+                    <Grid item>
+                      <Typography className="infoTextColor" variant="body2">
+                        Price
+                      </Typography>
+                    </Grid>
+                    <Grid item style={{ marginLeft: "auto" }}>
+                      <TextField
+                        type="number"
+                        defaultValue={data.price}
+                        label="Price"
+                        variant="outlined"
+                        onChange={(e) => setPrice(e.target.value)}
+                        style={{ width: "200px" }}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    className="infoItem"
+                    item
+                    container
+                    justifyContent="space-between"
+                  >
+                    <Grid item>
+                      <Typography className="infoTextColor" variant="body2">
+                        Condition
+                      </Typography>
+                    </Grid>
+                    <Grid item style={{ marginLeft: "auto" }}>
+                      <Select
+                        label="Condition"
+                        value={condition}
+                        displayEmpty
+                        onChange={(e) => setCondition(e.target.value)}
+                        fullWidth
+                        required
+                        margin="normal"
+                        inputProps={{
+                          style: {
+                            // color: "var(--custom-white)",
+                            borderColor: "var(--custom-white)",
+                          },
+                        }}
+                        style={{
+                          // color: "var(--custom-white)",
+                          borderColor: "var(--custom-white)",
+                          width: "200px",
+                          marginLeft: "30px",
+                          textAlign: "left",
+                        }}
+                      >
+                        <MenuItem value="" disabled>
+                          Select Condition
+                        </MenuItem>
+                        <MenuItem value="well-worn">Well Worn</MenuItem>
+                        <MenuItem value="minimal-use">Minimal Use</MenuItem>
+                        <MenuItem value="brand-new">Brand New</MenuItem>
+                      </Select>
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    className="infoItem"
+                    item
+                    container
+                    justifyContent="space-between"
+                  >
+                    <Grid item>
+                      <Typography className="infoTextColor" variant="body2">
+                        State
+                      </Typography>
+                    </Grid>
+                    <Grid item style={{ marginLeft: "auto" }}>
+                      <Select
+                        label="State"
+                        value={state}
+                        displayEmpty
+                        onChange={(e) => setState(e.target.value)}
+                        fullWidth
+                        required
+                        margin="normal"
+                        inputProps={{
+                          style: {
+                            // color: "var(--custom-white)",
+                            borderColor: "var(--custom-white)",
+                          },
+                        }}
+                        style={{
+                          // color: "var(--custom-white)",
+                          borderColor: "var(--custom-white)",
+                          width: "200px",
+                          textAlign: "left",
+                        }}
+                      >
+                        <MenuItem value="" disabled>
+                          Select State
+                        </MenuItem>
+                        {states.map((stateName) => (
+                          <MenuItem key={stateName} value={stateName}>
+                            {stateName}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Grid>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Button size="medium" onClick={() => handlePopoverClose()}>
-                    {" "}
-                    <CloseIcon
-                      fontSize="large"
-                      style={{ color: "var(--custom-white)" }}
-                    />
-                  </Button>
+              </Grid>
+              <Grid item>
+                <Grid
+                  container
+                  className="infoContainer"
+                  direction="row"
+                  justifyContent={"center"}
+                  spacing={4}
+                >
+                  <Grid item>
+                    <Button
+                      size="medium"
+                      onClick={() => {
+                        editListing();
+                      }}
+                    >
+                      <CheckIcon
+                        fontSize="large"
+                        style={{ color: "var(--custom-white)" }}
+                      />
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button size="medium" onClick={() => handlePopoverClose()}>
+                      {" "}
+                      <CloseIcon
+                        fontSize="large"
+                        style={{ color: "var(--custom-white)" }}
+                      />
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        </CardContent>
-      </Container>
-    </Popover>
+          </CardContent>
+        </Container>
+      </Popover>
+    </Backdrop>                  
   );
 }
