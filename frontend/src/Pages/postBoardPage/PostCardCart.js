@@ -98,6 +98,18 @@ export default function PostCardCart({ data, index, removeFromCart }) {
               />
             </Button>
           </CardActions>
+          <Button
+            variant="filled"
+            style={{
+              backgroundColor: "white",
+              marginBottom: "10px",
+            }}
+            onClick={() => {
+              window.location.href = `mailto:${data.aliasEmail}?subject=${data.name} Inquiry&body=Hi, I am interested in your item.`;
+            }}
+          >
+            Contact Seller
+          </Button>
           {data.isSold ? (
             <h2
               style={{
