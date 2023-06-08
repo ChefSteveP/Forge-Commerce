@@ -134,6 +134,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
                     onClick={confirmDelete}
                     variant="contained"
                     color="primary"
+                    style={{ backgroundColor: "var(--dark-lilac)" }}
                   >
                     Confirm
                   </Button>
@@ -141,6 +142,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
                     onClick={cancelDelete}
                     variant="outlined"
                     color="primary"
+                    style={{ color: "var(--dark-lilac)" }}
                   >
                     Cancel
                   </Button>
@@ -162,6 +164,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
                     onClick={confirmSell}
                     variant="contained"
                     color="primary"
+                    style={{ backgroundColor: "var(--dark-lilac)" }}
                   >
                     Confirm
                   </Button>
@@ -169,6 +172,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
                     onClick={cancelSell}
                     variant="outlined"
                     color="primary"
+                    style={{ color: "var(--dark-lilac)" }}
                   >
                     Cancel
                   </Button>
