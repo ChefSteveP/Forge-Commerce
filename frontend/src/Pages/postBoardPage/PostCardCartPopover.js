@@ -20,6 +20,7 @@ export default function PostCardCartPopover({
   setPopoverOpen,
   popoverAnchorEl,
   removeFromCart,
+  itemOwner,
 }) {
   function handlePopoverClose() {
     setPopoverOpen(false);
@@ -93,7 +94,7 @@ export default function PostCardCartPopover({
                   </Grid>
                   <Grid item style={{ marginLeft: "auto" }}>
                     <Typography className="infoTextColor" variant="body2">
-                      {data.listedby}
+                      {itemOwner}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -128,6 +129,57 @@ export default function PostCardCartPopover({
                   <Grid item style={{ marginLeft: "auto" }}>
                     <Typography className="infoTextColor" variant="body2">
                       ${data.price}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      State
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      {data.state}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      Condition
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      {data.condition}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      People Saved
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      {data.amountSaved}
                     </Typography>
                   </Grid>
                 </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PostBoardPage.css";
 import {
   Grid,
@@ -10,8 +10,8 @@ import {
   Card,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import axios from "axios";
 
 import PostCardPopover from "./PostCardPopover";
 import PostCardCartPopover from "./PostCardCartPopover";
@@ -19,12 +19,26 @@ import PostCardCartPopover from "./PostCardCartPopover";
 export default function PostCardCart({ data, index, removeFromCart }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
+  const [itemOwner, setItemOwner] = useState("");
 
   function handleViewInfoButtonClick(event, index) {
     setPopoverAnchorEl(index);
     setPopoverOpen(true);
   }
-  console.log(data);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:9000/profile/user/${data.listedby}`
+        );
+        setItemOwner(response.data.name);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (data.listedby) fetchData();
+  }, [data]);
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -70,7 +84,7 @@ export default function PostCardCart({ data, index, removeFromCart }) {
               setPopoverOpen={setPopoverOpen}
               popoverAnchorEl={popoverAnchorEl}
               removeFromCart={removeFromCart}
-              // handleAddToCart={handleAddToCart}
+              itemOwner={itemOwner}
             />
             <Button
               size="medium"
