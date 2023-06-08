@@ -10,16 +10,17 @@ import {
 import React from "react";
 import "./PostBoardPage.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function PostCardPopover({
+export default function PostCardCartPopover({
   data,
   index,
   popoverOpen,
   setPopoverOpen,
   popoverAnchorEl,
+  removeFromCart,
   itemOwner,
-  addToCart,
 }) {
   function handlePopoverClose() {
     setPopoverOpen(false);
@@ -196,10 +197,10 @@ export default function PostCardPopover({
                   <Button
                     size="medium"
                     onClick={() => {
-                      addToCart(data.id);
+                      removeFromCart(data.id);
                     }}
                   >
-                    <AddShoppingCartIcon
+                    <RemoveShoppingCartIcon
                       fontSize="large"
                       style={{ color: "var(--custom-white)" }}
                     />

@@ -1,10 +1,23 @@
 import React from "react";
+import { Container, Box } from "@mui/material";
+import ProfileCard from "./ProfileCard";
+import MyListings from "./MyListings";
+import Navbar from "../../Components/Navbar.js";
 import "./ProfilePage.css";
 
-export default function ProfilePage() {
+const ProfilePage = () => {
   return (
-    <div>
-      <h1>This is a test to see font type</h1>
-    </div>
+    <>
+      <Navbar />
+      <div className="item-container" style={{ minHeight: "100vh" }}>
+        <h1 className="page-title">Profile Page</h1>
+        <div className="profile-container">
+          <ProfileCard />
+          <MyListings />
+        </div>
+      </div>
+    </>
   );
-}
+};
+
+export default ProfilePage;

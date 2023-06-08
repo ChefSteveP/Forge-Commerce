@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PostBoardPage.css";
 import {
   Grid,
@@ -10,11 +10,13 @@ import {
   Card,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
-import PostCardPopover from "./PostCardPopover";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import axios from "axios";
 
-export default function PostCard({ data, index, addToCart }) {
+import PostCardPopover from "./PostCardPopover";
+import PostCardCartPopover from "./PostCardCartPopover";
+
+export default function PostCardCart({ data, index, removeFromCart }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
   const [itemOwner, setItemOwner] = useState("");
@@ -75,27 +77,40 @@ export default function PostCard({ data, index, addToCart }) {
                 style={{ color: "var(--custom-white)" }}
               />
             </Button>
-            <PostCardPopover
+            <PostCardCartPopover
               data={data}
               index={index}
               popoverOpen={popoverOpen}
               setPopoverOpen={setPopoverOpen}
               popoverAnchorEl={popoverAnchorEl}
+              removeFromCart={removeFromCart}
               itemOwner={itemOwner}
-              addToCart={addToCart}
             />
             <Button
               size="medium"
               onClick={() => {
-                addToCart(data.id);
+                removeFromCart(data.id);
               }}
             >
-              <BookmarkAddIcon
+              <BookmarkRemoveIcon
                 fontSize="large"
                 style={{ color: "var(--custom-white)" }}
               />
             </Button>
           </CardActions>
+          {data.isSold ? (
+            <h2
+              style={{
+                backgroundColor: "white",
+                color: "red",
+                padding: "5px",
+                borderRadius: "5px",
+              }}
+              className="sold-tag"
+            >
+              Sold
+            </h2>
+          ) : null}
         </Card>
       </Card>
     </Grid>
