@@ -141,13 +141,17 @@ export default function SoldPostCard({ data, index, addToCart }) {
                   onClick={confirmDelete}
                   variant="contained"
                   color="primary"
+                  style={{ backgroundColor: "var(--dark-lilac)" }}
                 >
                   Confirm
                 </Button>
                 <Button
                   onClick={cancelDelete}
                   variant="outlined"
-                  color="primary"
+                  style={{
+                    color: "var(--dark-lilac)",
+                    border: "1px solid var(--dark-lilac)",
+                  }}
                 >
                   Cancel
                 </Button>
