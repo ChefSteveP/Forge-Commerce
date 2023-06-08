@@ -151,14 +151,14 @@ const Navbar = () => {
                 <Typography variant="body2">Shop</Typography>
               </ButtonWithBar>
 
-              <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
-                <PersonIcon />
-                <Typography variant="body2">Profile</Typography>
-              </ButtonWithBar>
-
               <ButtonWithBar component={RouterLink} to={RouteLocations.cart}>
                 <BookmarkIcon />
                 <Typography variant="body2">Saved</Typography>
+              </ButtonWithBar>
+              
+               <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
+                <PersonIcon />
+                <Typography variant="body2">Profile</Typography>
               </ButtonWithBar>
 
               <ButtonWithBar onClick={() => logout()}>
