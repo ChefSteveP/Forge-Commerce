@@ -40,7 +40,7 @@ export default function PostCardPopover({
       }}
     >
       <Container
-        maxWidth="fullWidth"
+        maxWidth="sm"
         style={{
           backgroundColor: "var(--light-lilac)",
           padding: "0px",
