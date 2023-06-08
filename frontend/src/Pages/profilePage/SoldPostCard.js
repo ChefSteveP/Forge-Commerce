@@ -136,7 +136,7 @@ export default function SoldPostCard({ data, index, addToCart }) {
               <DialogContent>
                 <p>Are you sure you want to delete this item?</p>
               </DialogContent>
-              <DialogActions>
+              <DialogActions style={{ justifyContent: "center" }}>
                 <Button
                   onClick={confirmDelete}
                   variant="contained"

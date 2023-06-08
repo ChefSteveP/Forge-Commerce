@@ -131,7 +131,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
                 <DialogContent>
                   <p>Are you sure you want to delete this item?</p>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions style={{ justifyContent: "center" }}>
                   <Button
                     onClick={confirmDelete}
                     variant="contained"
@@ -164,7 +164,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
                 <DialogContent>
                   <p>Are you sure you want to mark this item as sold?</p>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions style={{ justifyContent: "center" }}>
                   <Button
                     onClick={confirmSell}
                     variant="contained"
