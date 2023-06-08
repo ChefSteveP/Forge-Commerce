@@ -3,6 +3,7 @@ import {
   Container,
   Grid,
   Popover,
+  Backdrop,
   Typography,
   CardMedia,
   Button,
@@ -28,8 +29,8 @@ export default function PostCardCartPopover({
   return (
     <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        onClick={handleClose}
+        open={popoverOpen}
+        onClick={handlePopoverClose}
       >
         <Popover
         open={popoverOpen && popoverAnchorEl === index}
