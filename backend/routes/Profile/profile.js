@@ -98,6 +98,20 @@ router.put("/sell/:listingID", async function (req, res) {
   }
 });
 
+// Unsell listing
+router.put("/unsell/:listingID", async function (req, res) {
+  try {
+    await updateDoc(doc(db, "products", req.params.listingID), {
+      isSold: false,
+    });
+    return res.status(200).json({ message: "item unsold" });
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json(error);
+  }
+});
+
+
 // get all listings for specific user that is sold and add their price 
 router.get("/earnings/:username", async function (req, res) {
   try {

@@ -88,7 +88,14 @@ function ProfileCard() {
           },
         }}
       >
-        <CardContent>
+        <CardContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Typography
             variant="h5"
             component="h2"
@@ -104,9 +111,8 @@ function ProfileCard() {
             Name: {user?.name}
           </Typography>
           <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
-            Earnings: ${earnings}
+            Earnings: ${typeof earnings === 'number' ? earnings.toFixed(2) : earnings}
           </Typography>
-
           <Button
             size="medium"
             onClick={(event) => {

@@ -16,9 +16,10 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import axios from "axios";
-import EditablePostCardPopover from "./EditablePostCardPopover";
+import SoldEditablePostCardPopover from "./SoldEditablePostCardPopover";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import UndoIcon from '@mui/icons-material/Undo';
 
 export default function SoldPostCard({ data, index, addToCart }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -31,6 +32,17 @@ export default function SoldPostCard({ data, index, addToCart }) {
     setPopoverOpen(true);
   }
   console.log(data);
+
+    // Unsell function
+  const unsellItem = async () => {
+    try {
+      await axios.put(`http://localhost:9000/profile/unsell/${data.id}`);
+      console.log('Item unsold');
+      // Add any state updates or additional actions here.
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,6 +71,7 @@ export default function SoldPostCard({ data, index, addToCart }) {
     setDeleteOpen(false);
   };
 
+
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Card className="postBoardCard" style={{ backgroundColor: "lightgray" }}>
@@ -78,17 +91,43 @@ export default function SoldPostCard({ data, index, addToCart }) {
             >
               {data?.name}
             </Typography>
+            <Typography className="textColor" variant="body2">
+              ${data?.price}
+            </Typography>
+
           </CardContent>
+          <CardActions className="cardActions">
           <Button
-            size="medium"
-            onClick={handleDeleteButton}
-            style={{ color: "white" }}
-          >
-            <DeleteIcon
+                size="medium"
+                onClick={(event) => handleViewInfoButtonClick(event, index)}
+                style={{ color: "white" }}
+              >
+                <EditIcon
+                  fontSize="large"
+                  style={{ color: "var(--custom-white)", marginRight: "5px" }}
+                />
+            </Button>
+
+            <Button
+              size="medium"
+              onClick={handleDeleteButton}
+              style={{ color: "white" }}
+            >
+              <DeleteIcon
+                fontSize="large"
+                style={{ color: "var(--custom-white)", marginRight: "5px" }}
+              />
+            </Button>
+
+            <Button onClick={unsellItem} size="medium" style={{ color: "white" }}>
+            <UndoIcon
               fontSize="large"
               style={{ color: "var(--custom-white)", marginRight: "5px" }}
             />
           </Button>
+         
+
+
           <Dialog open={deleteOpen} onClose={cancelDelete}>
             <DialogTitle>Confirmation</DialogTitle>
             <DialogContent>
@@ -107,8 +146,22 @@ export default function SoldPostCard({ data, index, addToCart }) {
               </Button>
             </DialogActions>
           </Dialog>
+
+          <SoldEditablePostCardPopover
+              data={data}
+              index={index}
+              popoverOpen={popoverOpen}
+              setPopoverOpen={setPopoverOpen}
+              popoverAnchorEl={popoverAnchorEl}
+              itemOwner={itemOwner}
+              addToCart={addToCart}
+            />
+          </CardActions>
         </Card>
+
       </Card>
+
     </Grid>
+
   );
 }
