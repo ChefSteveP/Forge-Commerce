@@ -3,21 +3,18 @@ import { Container, Box } from "@mui/material";
 import ProfileCard from "./ProfileCard";
 import MyListings from "./MyListings";
 import Navbar from "../../Components/Navbar.js";
+import "./ProfilePage.css";
 
 const ProfilePage = () => {
   return (
     <>
       <Navbar />
-      <div className="item-container">
+      <div className="item-container" style={{ minHeight: "100vh" }}>
         <h1 className="page-title">Profile Page</h1>
-        <ProfileCard />
-        <MyListings />
-        {/* <Box>
+        <div className="profile-container">
           <ProfileCard />
-        </Box>
-        <Box>
           <MyListings />
-        </Box> */}
+        </div>
       </div>
     </>
   );

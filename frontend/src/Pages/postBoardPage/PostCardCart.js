@@ -84,6 +84,19 @@ export default function PostCardCart({ data, index, removeFromCart }) {
               />
             </Button>
           </CardActions>
+          {data.isSold ? (
+            <h2
+              style={{
+                backgroundColor: "white",
+                color: "red",
+                padding: "5px",
+                borderRadius: "5px",
+              }}
+              className="sold-tag"
+            >
+              Sold
+            </h2>
+          ) : null}
         </Card>
       </Card>
     </Grid>

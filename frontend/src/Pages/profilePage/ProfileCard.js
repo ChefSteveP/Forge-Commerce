@@ -64,16 +64,16 @@ function ProfileCard() {
             gutterBottom
             sx={{ fontSize: 24, fontWeight: "bold" }}
           >
-            Profile
+            My Info
           </Typography>
           <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
             Email: {user?.email}
           </Typography>
           <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
-            name: {user?.name}
+            Name: {user?.name}
           </Typography>
           <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
-            Earnings: $152.3
+            Earnings: $152.30
           </Typography>
         </CardContent>
       </Card>
