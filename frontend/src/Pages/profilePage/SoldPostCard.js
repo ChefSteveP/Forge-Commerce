@@ -19,7 +19,7 @@ import axios from "axios";
 import SoldEditablePostCardPopover from "./SoldEditablePostCardPopover";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import UndoIcon from '@mui/icons-material/Undo';
+import UndoIcon from "@mui/icons-material/Undo";
 
 export default function SoldPostCard({ data, index, addToCart }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -33,11 +33,12 @@ export default function SoldPostCard({ data, index, addToCart }) {
   }
   console.log(data);
 
-    // Unsell function
+  // Unsell function
   const unsellItem = async () => {
     try {
       await axios.put(`http://localhost:9000/profile/unsell/${data.id}`);
-      console.log('Item unsold');
+      console.log("Item unsold");
+      window.location.reload();
       // Add any state updates or additional actions here.
     } catch (error) {
       console.error(error);
@@ -65,12 +66,12 @@ export default function SoldPostCard({ data, index, addToCart }) {
   const confirmDelete = () => {
     // Perform the action on confirmation
     setDeleteOpen(false);
+    window.location.reload();
   };
 
   const cancelDelete = () => {
     setDeleteOpen(false);
   };
-
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -88,24 +89,24 @@ export default function SoldPostCard({ data, index, addToCart }) {
               gutterBottom
               variant="h5"
               component="div"
+              style={{ fontWeight: "bold" }}
             >
               {data?.name}
             </Typography>
-            <Typography className="textColor" variant="body2">
+            <Typography className="textColor" variant="h5">
               ${data?.price}
             </Typography>
-
           </CardContent>
           <CardActions className="cardActions">
-          <Button
-                size="medium"
-                onClick={(event) => handleViewInfoButtonClick(event, index)}
-                style={{ color: "white" }}
-              >
-                <EditIcon
-                  fontSize="large"
-                  style={{ color: "var(--custom-white)", marginRight: "5px" }}
-                />
+            <Button
+              size="medium"
+              onClick={(event) => handleViewInfoButtonClick(event, index)}
+              style={{ color: "white" }}
+            >
+              <EditIcon
+                fontSize="large"
+                style={{ color: "var(--custom-white)", marginRight: "5px" }}
+              />
             </Button>
 
             <Button
@@ -119,35 +120,45 @@ export default function SoldPostCard({ data, index, addToCart }) {
               />
             </Button>
 
-            <Button onClick={unsellItem} size="medium" style={{ color: "white" }}>
-            <UndoIcon
-              fontSize="large"
-              style={{ color: "var(--custom-white)", marginRight: "5px" }}
-            />
-          </Button>
-         
+            <Button
+              onClick={unsellItem}
+              size="medium"
+              style={{ color: "white" }}
+            >
+              <UndoIcon
+                fontSize="large"
+                style={{ color: "var(--custom-white)", marginRight: "5px" }}
+              />
+            </Button>
 
+            <Dialog open={deleteOpen} onClose={cancelDelete}>
+              <DialogTitle>Confirmation</DialogTitle>
+              <DialogContent>
+                <p>Are you sure you want to delete this item?</p>
+              </DialogContent>
+              <DialogActions style={{ justifyContent: "center" }}>
+                <Button
+                  onClick={confirmDelete}
+                  variant="contained"
+                  color="primary"
+                  style={{ backgroundColor: "var(--dark-lilac)" }}
+                >
+                  Confirm
+                </Button>
+                <Button
+                  onClick={cancelDelete}
+                  variant="outlined"
+                  style={{
+                    color: "var(--dark-lilac)",
+                    border: "1px solid var(--dark-lilac)",
+                  }}
+                >
+                  Cancel
+                </Button>
+              </DialogActions>
+            </Dialog>
 
-          <Dialog open={deleteOpen} onClose={cancelDelete}>
-            <DialogTitle>Confirmation</DialogTitle>
-            <DialogContent>
-              <p>Are you sure you want to delete this item?</p>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClick={confirmDelete}
-                variant="contained"
-                color="primary"
-              >
-                Confirm
-              </Button>
-              <Button onClick={cancelDelete} variant="outlined" color="primary">
-                Cancel
-              </Button>
-            </DialogActions>
-          </Dialog>
-
-          <SoldEditablePostCardPopover
+            <SoldEditablePostCardPopover
               data={data}
               index={index}
               popoverOpen={popoverOpen}
@@ -158,10 +169,7 @@ export default function SoldPostCard({ data, index, addToCart }) {
             />
           </CardActions>
         </Card>
-
       </Card>
-
     </Grid>
-
   );
 }

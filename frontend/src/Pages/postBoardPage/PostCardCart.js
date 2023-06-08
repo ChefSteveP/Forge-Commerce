@@ -56,8 +56,9 @@ export default function PostCardCart({ data, index, removeFromCart }) {
             <Typography
               className="textColor"
               gutterBottom
-              variant="h4"
+              variant="h5"
               component="div"
+              style={{ fontWeight: "bold" }}
             >
               {data?.name}
             </Typography>

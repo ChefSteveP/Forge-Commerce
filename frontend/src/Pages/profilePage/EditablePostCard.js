@@ -55,6 +55,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
     // Perform the action on confirmation
     await axios.put(`http://localhost:9000/profile/sell/${data.id}`);
     setSellOpen(false);
+    window.location.reload();
   };
 
   const cancelSell = () => {
@@ -94,10 +95,11 @@ export default function EditablePostCard({ data, index, addToCart }) {
               gutterBottom
               variant="h5"
               component="div"
+              style={{ fontWeight: "bold" }}
             >
               {data?.name}
             </Typography>
-            <Typography className="textColor" variant="body2">
+            <Typography className="textColor" variant="h5">
               ${data?.price}
             </Typography>
           </CardContent>
@@ -129,11 +131,12 @@ export default function EditablePostCard({ data, index, addToCart }) {
                 <DialogContent>
                   <p>Are you sure you want to delete this item?</p>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions style={{ justifyContent: "center" }}>
                   <Button
                     onClick={confirmDelete}
                     variant="contained"
                     color="primary"
+                    style={{ backgroundColor: "var(--dark-lilac)" }}
                   >
                     Confirm
                   </Button>
@@ -141,6 +144,10 @@ export default function EditablePostCard({ data, index, addToCart }) {
                     onClick={cancelDelete}
                     variant="outlined"
                     color="primary"
+                    style={{
+                      color: "var(--dark-lilac)",
+                      border: "1px solid var(--dark-lilac)",
+                    }}
                   >
                     Cancel
                   </Button>
@@ -148,7 +155,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
               </Dialog>
               <Button
                 onClick={handleMarkAsSoldButton}
-                style={{ color: "white" }}
+                style={{ color: "white", fontWeight: "bold" }}
               >
                 Sold?
               </Button>
@@ -157,11 +164,12 @@ export default function EditablePostCard({ data, index, addToCart }) {
                 <DialogContent>
                   <p>Are you sure you want to mark this item as sold?</p>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions style={{ justifyContent: "center" }}>
                   <Button
                     onClick={confirmSell}
                     variant="contained"
                     color="primary"
+                    style={{ backgroundColor: "var(--dark-lilac)" }}
                   >
                     Confirm
                   </Button>
@@ -169,6 +177,10 @@ export default function EditablePostCard({ data, index, addToCart }) {
                     onClick={cancelSell}
                     variant="outlined"
                     color="primary"
+                    style={{
+                      color: "var(--dark-lilac)",
+                      border: "1px solid var(--dark-lilac)",
+                    }}
                   >
                     Cancel
                   </Button>

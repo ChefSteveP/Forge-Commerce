@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import axios from "axios";
 import { auth } from "../../app/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
@@ -79,7 +79,17 @@ const MyListings = () => {
 
   return (
     <Box>
-      {username && <h2 style={{ fontWeight: "bolder" }}>My Listings</h2>}
+      {username && (
+        <h1
+          style={{
+            fontWeight: "bolder",
+            marginLeft: "30px",
+            color: "var(--dark-lilac)",
+          }}
+        >
+          My Listings
+        </h1>
+      )}
       <Container maxWidth="fullWidth">
         <Grid container className="cardGrid" spacing={3}>
           {listings.map((listing, index) =>
@@ -87,7 +97,17 @@ const MyListings = () => {
           )}
         </Grid>
       </Container>
-      {username && <h2 style={{ fontWeight: "bolder" }}>Sold Listings</h2>}
+      {username && (
+        <h1
+          style={{
+            fontWeight: "bolder",
+            marginLeft: "30px",
+            color: "var(--dark-lilac)",
+          }}
+        >
+          Sold Listings
+        </h1>
+      )}
       <Container maxWidth="fullWidth">
         <Grid container className="cardGrid" spacing={3}>
           {listings.map((listing, index) =>

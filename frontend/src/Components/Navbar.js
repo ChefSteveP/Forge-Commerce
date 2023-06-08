@@ -115,13 +115,14 @@ const Navbar = () => {
         <StoreIcon />
         <Typography variant="body2">Shop</Typography>
       </NavigationLink>
-      <NavigationLink to={RouteLocations.profile}>
-        <PersonIcon />
-        <Typography variant="body2">Profile</Typography>
-      </NavigationLink>
+     
       <NavigationLink to={RouteLocations.cart}>
         <BookmarkIcon />
         <Typography variant="body2">Saved</Typography>
+      </NavigationLink>
+       <NavigationLink to={RouteLocations.profile}>
+        <PersonIcon />
+        <Typography variant="body2">Profile</Typography>
       </NavigationLink>
       <NavigationLink onClick={() => logout()}>
         <LoginIcon />
@@ -140,15 +141,7 @@ const Navbar = () => {
             height="80"
             style={{ margin: "10px", marginLeft: "10px" }}
           />
-          <Search sx={{ flexGrow: 1 }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          <div style={{ flexGrow: 1 }} />
           {matches && (
             <>
               <ButtonWithBar
@@ -159,14 +152,14 @@ const Navbar = () => {
                 <Typography variant="body2">Shop</Typography>
               </ButtonWithBar>
 
-              <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
-                <PersonIcon />
-                <Typography variant="body2">Profile</Typography>
-              </ButtonWithBar>
-
               <ButtonWithBar component={RouterLink} to={RouteLocations.cart}>
                 <BookmarkIcon />
                 <Typography variant="body2">Saved</Typography>
+              </ButtonWithBar>
+              
+               <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
+                <PersonIcon />
+                <Typography variant="body2">Profile</Typography>
               </ButtonWithBar>
 
               <ButtonWithBar onClick={() => logout()}>

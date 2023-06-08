@@ -15,43 +15,47 @@ const {
   deleteDoc,
 } = require("firebase/firestore");
 
-const { MailSlurp } = require('mailslurp-client');
-const fetchApi = require('isomorphic-fetch');
-const {AliasControllerApi,Configuration} = require('mailslurp-client');
+const { MailSlurp } = require("mailslurp-client");
+const fetchApi = require("isomorphic-fetch");
+const { AliasControllerApi, Configuration } = require("mailslurp-client");
 
 // setup mailslurp config
-const config = new Configuration({ apiKey: process.env.MAILSLURP_API_KEY, fetchApi });
+const config = new Configuration({
+  apiKey: process.env.MAILSLURP_API_KEY,
+  fetchApi,
+});
 
 // create controller
 
 const aliasControllerApi = new AliasControllerApi(config);
 
 async function createAliasEmail(mail) {
-    try{
-        const alias = await aliasControllerApi.createAlias({
-            createAliasOptions: {
-            emailAddress: mail,
-            useThreads: true,
-            },
-        });
+  try {
+    const alias = await aliasControllerApi.createAlias({
+      createAliasOptions: {
+        emailAddress: mail,
+        useThreads: true,
+      },
+    });
 
-        console.log('creation', alias.emailAddress);
-        return alias.emailAddress;
-    } catch (error) {
-        console.error('Error creating alias:', error.message);
-    } 
+    console.log("creation", alias.emailAddress);
+    return alias.emailAddress;
+  } catch (error) {
+    console.error("Error creating alias:", error);
+  }
 }
 
 // add user
 // add user
 router.post("/", async function (req, res) {
   try {
+    console.log(req.body.email);
     const alias = await createAliasEmail(req.body.email);
-    console.log('inside post: ', alias)
+    console.log("inside post: ", alias);
     const ref = await addDoc(collection(db, "users"), {
       ...req.body,
       savedItems: [],
-      aliasEmail : alias,
+      aliasEmail: alias,
     });
     return res.status(201).json({ message: "Post successful", id: ref.id });
   } catch (error) {

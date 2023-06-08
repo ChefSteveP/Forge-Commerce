@@ -324,7 +324,15 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
           <Grid item>
             <Button
               variant="contained"
-              onClick={() => setPopoverOpen(false)}
+              onClick={() => {
+                setPopoverOpen(false);
+                setName("");
+                setCondition("");
+                setDescription("");
+                setPrice("");
+                setState("");
+                setSelectedImage(null);
+              }}
               sx={{
                 backgroundColor: "var(--dark-lilac)",
                 "&:hover": { backgroundColor: "var(--dark-lilac)" },

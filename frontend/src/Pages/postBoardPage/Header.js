@@ -28,7 +28,7 @@ export default function Header({ search, handleSearch, setFilters }) {
           className="page-title"
           style={{ marginLeft: "0px", marginTop: "125px" }}
         >
-          Post Board
+          Shop
         </Typography>
       </div>
       <Grid
@@ -56,6 +56,7 @@ export default function Header({ search, handleSearch, setFilters }) {
             onClick={(event) => {
               handleFilterItemsButtonClick(event);
             }}
+            style={{ color: "var(--dark-lilac)" }}
           >
             <FilterAltIcon
               fontSize="large"
@@ -75,6 +76,7 @@ export default function Header({ search, handleSearch, setFilters }) {
             onClick={(event) => {
               handleSellItemButtonClick(event);
             }}
+            style={{ color: "var(--dark-lilac)" }}
           >
             <SellIcon
               fontSize="large"

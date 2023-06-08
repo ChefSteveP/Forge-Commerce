@@ -5,7 +5,6 @@ import {
   Popover,
   Typography,
   CardMedia,
-  Backdrop,
   Button,
 } from "@mui/material";
 import React from "react";
@@ -24,16 +23,15 @@ export default function PostCardCartPopover({
 }) {
   function handlePopoverClose() {
     setPopoverOpen(false);
-
   }
 
   return (
     <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={popoverOpen}
-        onClick={handlePopoverClose}
+        open={open}
+        onClick={handleClose}
       >
-      <Popover
+        <Popover
         open={popoverOpen && popoverAnchorEl === index}
         onClose={handlePopoverClose}
         anchorReference="anchorPosition"
@@ -47,7 +45,7 @@ export default function PostCardCartPopover({
         }}
       >
         <Container
-          maxWidth="fullWidth"
+          maxWidth="sm"
           style={{
             backgroundColor: "var(--light-lilac)",
             padding: "0px",
@@ -213,12 +211,16 @@ export default function PostCardCartPopover({
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button size="medium" onClick={() => handlePopoverClose()}>
-                      {" "}
-                      <CloseIcon
-                        fontSize="large"
-                        style={{ color: "var(--custom-white)" }}
-                      />
+                  <Button
+                    size="medium"
+                    onClick={() => {
+                      removeFromCart(data.id);
+                    }}
+                  >
+                    <BookmarkRemoveIcon
+                      fontSize="large"
+                      style={{ color: "var(--custom-white)" }}
+                    />
                     </Button>
                   </Grid>
                 </Grid>
@@ -227,7 +229,7 @@ export default function PostCardCartPopover({
           </CardContent>
         </Container>
       </Popover>
-    </Backdrop>
+      </Backdrop>
     
   );
 }

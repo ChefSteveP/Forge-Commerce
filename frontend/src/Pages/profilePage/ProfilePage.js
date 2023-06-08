@@ -15,9 +15,9 @@ const ProfilePage = () => {
           fontWeight={"bold"}
           gutterBottom
           className="page-title"
-          style={{ marginLeft: "0px" }}
+          style={{ marginLeft: "30px" }}
         >
-          Profile Page
+          My Profile
         </Typography>
         <ProfileCard />
         <MyListings />

@@ -73,7 +73,7 @@ function ProfileCard() {
   }, [curUser]);
 
   return (
-    <Box>
+    <Box style={{ marginLeft: "30px" }}>
       <Card
         sx={{
           backgroundColor: "light-lilac",
@@ -111,13 +111,15 @@ function ProfileCard() {
             Name: {user?.name}
           </Typography>
           <Typography variant="body2" component="p" sx={{ fontSize: 16 }}>
-            Earnings: ${typeof earnings === 'number' ? earnings.toFixed(2) : earnings}
+            Earnings: $
+            {typeof earnings === "number" ? earnings.toFixed(2) : earnings}
           </Typography>
           <Button
             size="medium"
             onClick={(event) => {
               handleSellItemButtonClick(event);
             }}
+            style={{ color: "var(--dark-lilac)" }}
           >
             <SellIcon
               fontSize="large"

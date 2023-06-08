@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import "./PostBoardPage.css";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function PostCardPopover({
@@ -72,160 +72,160 @@ export default function PostCardPopover({
                     {data.name}
                   </Typography>
 
-                  <Grid container justifyContent="center" alignItems="center">
-                    <Typography className="textColor" variant="subtitle1">
-                      {data.description}
+                <Grid container justifyContent="center" alignItems="center">
+                  <Typography className="textColor" variant="subtitle1">
+                    {data.description}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Grid
+                container
+                className="infoContainer"
+                direction="column"
+                spacing={1}
+              >
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      Listed By
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      {itemOwner}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      Name
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      {data.name}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      Price
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      ${data.price}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      State
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      {data.state}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      Condition
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      {data.condition}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  className="infoItem"
+                  item
+                  container
+                  justifyContent="space-between"
+                >
+                  <Grid item>
+                    <Typography className="infoTextColor" variant="body2">
+                      Saved By
+                    </Typography>
+                  </Grid>
+                  <Grid item style={{ marginLeft: "auto" }}>
+                    <Typography className="infoTextColor" variant="body2">
+                      {data.amountSaved}
                     </Typography>
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item>
-                <Grid
-                  container
-                  className="infoContainer"
-                  direction="column"
-                  spacing={1}
-                >
-                  <Grid
-                    className="infoItem"
-                    item
-                    container
-                    justifyContent="space-between"
-                  >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Listed By
-                      </Typography>
-                    </Grid>
-                    <Grid item style={{ marginLeft: "auto" }}>
-                      <Typography className="infoTextColor" variant="body2">
-                        {itemOwner}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    className="infoItem"
-                    item
-                    container
-                    justifyContent="space-between"
-                  >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Name
-                      </Typography>
-                    </Grid>
-                    <Grid item style={{ marginLeft: "auto" }}>
-                      <Typography className="infoTextColor" variant="body2">
-                        {data.name}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    className="infoItem"
-                    item
-                    container
-                    justifyContent="space-between"
-                  >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Price
-                      </Typography>
-                    </Grid>
-                    <Grid item style={{ marginLeft: "auto" }}>
-                      <Typography className="infoTextColor" variant="body2">
-                        ${data.price}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    className="infoItem"
-                    item
-                    container
-                    justifyContent="space-between"
-                  >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        State
-                      </Typography>
-                    </Grid>
-                    <Grid item style={{ marginLeft: "auto" }}>
-                      <Typography className="infoTextColor" variant="body2">
-                        {data.state}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    className="infoItem"
-                    item
-                    container
-                    justifyContent="space-between"
-                  >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Condition
-                      </Typography>
-                    </Grid>
-                    <Grid item style={{ marginLeft: "auto" }}>
-                      <Typography className="infoTextColor" variant="body2">
-                        {data.condition}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    className="infoItem"
-                    item
-                    container
-                    justifyContent="space-between"
-                  >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Saved By
-                      </Typography>
-                    </Grid>
-                    <Grid item style={{ marginLeft: "auto" }}>
-                      <Typography className="infoTextColor" variant="body2">
-                        {data.amountSaved}
-                      </Typography>
-                    </Grid>
-                  </Grid>
+            </Grid>
+            <Grid item>
+              <Grid
+                container
+                className="infoContainer"
+                direction="row"
+                justifyContent={"center"}
+                spacing={4}
+              >
+                <Grid item>
+                  <Button size="medium" onClick={() => handlePopoverClose()}>
+                    {" "}
+                    <CloseIcon
+                      fontSize="large"
+                      style={{ color: "var(--custom-white)" }}
+                    />
+                  </Button>
                 </Grid>
-              </Grid>
-              <Grid item>
-                <Grid
-                  container
-                  className="infoContainer"
-                  direction="row"
-                  justifyContent={"center"}
-                  spacing={4}
-                >
-                  <Grid item>
-                    <Button
-                      size="medium"
-                      onClick={() => {
-                        addToCart(data.id);
-                      }}
-                    >
-                      <AddShoppingCartIcon
-                        fontSize="large"
-                        style={{ color: "var(--custom-white)" }}
-                      />
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button size="medium" onClick={() => handlePopoverClose()}>
-                      {" "}
-                      <CloseIcon
-                        fontSize="large"
-                        style={{ color: "var(--custom-white)" }}
-                      />
-                    </Button>
-                  </Grid>
+                <Grid item>
+                  <Button
+                    size="medium"
+                    onClick={() => {
+                      addToCart(data.id);
+                    }}
+                  >
+                    <BookmarkAddIcon
+                      fontSize="large"
+                      style={{ color: "var(--custom-white)" }}
+                    />
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
-          </CardContent>
-        </Container>
-      </Popover>
+          </Grid>
+        </CardContent>
+      </Container>
+    </Popover>
     </Backdrop>
   );
 }
