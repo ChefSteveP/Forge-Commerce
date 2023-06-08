@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Box } from "@mui/material";
 import ProfileCard from "./ProfileCard";
 import MyListings from "./MyListings";
 import Navbar from "../../Components/Navbar.js";
