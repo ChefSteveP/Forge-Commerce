@@ -9,7 +9,7 @@ const ProfilePage = () => {
   return (
     <>
       <Navbar />
-      <div className="item-container" style={{ minHeight: "100vh" }}>
+      <div className="item-container">
         <h1 className="page-title">Profile Page</h1>
         <div className="profile-container">
           <ProfileCard />
