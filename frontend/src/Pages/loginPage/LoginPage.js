@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { RouteLocations } from "../../app/RouteLocations";
+import backgroundImage from "../loginPage/image.jpg";
 
 export default function LoginPage() {
   const [signUp, setSignUp] = useState(false);
@@ -85,7 +86,7 @@ export default function LoginPage() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(https://i.redd.it/luafq8gd3r071.jpg)",
+          backgroundImage: `url(${backgroundImage})`,
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
