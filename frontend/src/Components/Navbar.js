@@ -115,13 +115,14 @@ const Navbar = () => {
         <StoreIcon />
         <Typography variant="body2">Shop</Typography>
       </NavigationLink>
-      <NavigationLink to={RouteLocations.profile}>
-        <PersonIcon />
-        <Typography variant="body2">Profile</Typography>
-      </NavigationLink>
+     
       <NavigationLink to={RouteLocations.cart}>
         <BookmarkIcon />
         <Typography variant="body2">Saved</Typography>
+      </NavigationLink>
+       <NavigationLink to={RouteLocations.profile}>
+        <PersonIcon />
+        <Typography variant="body2">Profile</Typography>
       </NavigationLink>
       <NavigationLink onClick={() => logout()}>
         <LoginIcon />
