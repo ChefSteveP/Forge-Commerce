@@ -19,6 +19,7 @@ import backgroundImage from "../loginPage/image.jpg";
 export default function LoginPage() {
   const [signUp, setSignUp] = useState(false);
   const [isError, setIsError] = useState();
+  const [popoverOpen, setPopoverOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -70,7 +71,7 @@ export default function LoginPage() {
         };
 
         axios.post("http://localhost:9000/login", newUser);
-        setSignUp(false);
+        setPopoverOpen(true);
       })
       .catch((error) => {
         setIsError(true);
@@ -108,6 +109,8 @@ export default function LoginPage() {
           isError={isError}
           setSignUp={setSignUp}
           setIsError={setIsError}
+          popoverOpen={popoverOpen}
+          setPopoverOpen={setPopoverOpen}
         />
       )}
     </Grid>
