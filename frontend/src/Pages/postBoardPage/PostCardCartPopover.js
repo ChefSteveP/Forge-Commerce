@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import "./PostBoardPage.css";
-import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function PostCardCartPopover({
@@ -40,7 +40,7 @@ export default function PostCardCartPopover({
       }}
     >
       <Container
-        maxWidth="fullWidth"
+        maxWidth="sm"
         style={{
           backgroundColor: "var(--light-lilac)",
           padding: "0px",
@@ -193,22 +193,22 @@ export default function PostCardCartPopover({
                 spacing={4}
               >
                 <Grid item>
-                  <Button
-                    size="medium"
-                    onClick={() => {
-                      removeFromCart(data.id);
-                    }}
-                  >
-                    <RemoveShoppingCartIcon
+                  <Button size="medium" onClick={() => handlePopoverClose()}>
+                    {" "}
+                    <CloseIcon
                       fontSize="large"
                       style={{ color: "var(--custom-white)" }}
                     />
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button size="medium" onClick={() => handlePopoverClose()}>
-                    {" "}
-                    <CloseIcon
+                  <Button
+                    size="medium"
+                    onClick={() => {
+                      removeFromCart(data.id);
+                    }}
+                  >
+                    <BookmarkRemoveIcon
                       fontSize="large"
                       style={{ color: "var(--custom-white)" }}
                     />

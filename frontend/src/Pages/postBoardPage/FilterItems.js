@@ -138,9 +138,7 @@ export default function FilterItems({
                 borderColor: "var(--custom-white)",
               }}
             >
-              <MenuItem value="" disabled>
-                Select Conditon
-              </MenuItem>
+              <MenuItem value="">Select Conditon</MenuItem>
               <MenuItem value="well-worn">Well Worn</MenuItem>
               <MenuItem value="minimal-use">Minimal Use</MenuItem>
               <MenuItem value="brand-new">Brand New</MenuItem>
@@ -165,9 +163,7 @@ export default function FilterItems({
                 borderColor: "var(--custom-white)",
               }}
             >
-              <MenuItem value="" disabled>
-                Select State
-              </MenuItem>
+              <MenuItem value="">Select State</MenuItem>
               {states.map((stateName) => (
                 <MenuItem key={stateName} value={stateName}>
                   {stateName}
@@ -200,9 +196,7 @@ export default function FilterItems({
                 borderColor: "var(--custom-white)",
               }}
             >
-              <MenuItem value="" disabled>
-                Select Price Sort
-              </MenuItem>
+              <MenuItem value="">Select Price Sort</MenuItem>
               <MenuItem value="price-ascending">Price Ascending</MenuItem>
               <MenuItem value="price-descending">Price Descending</MenuItem>
             </Select>

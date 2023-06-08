@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import "./PostBoardPage.css";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function PostCardPopover({
@@ -193,22 +193,22 @@ export default function PostCardPopover({
                 spacing={4}
               >
                 <Grid item>
-                  <Button
-                    size="medium"
-                    onClick={() => {
-                      addToCart(data.id);
-                    }}
-                  >
-                    <AddShoppingCartIcon
+                  <Button size="medium" onClick={() => handlePopoverClose()}>
+                    {" "}
+                    <CloseIcon
                       fontSize="large"
                       style={{ color: "var(--custom-white)" }}
                     />
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button size="medium" onClick={() => handlePopoverClose()}>
-                    {" "}
-                    <CloseIcon
+                  <Button
+                    size="medium"
+                    onClick={() => {
+                      addToCart(data.id);
+                    }}
+                  >
+                    <BookmarkAddIcon
                       fontSize="large"
                       style={{ color: "var(--custom-white)" }}
                     />
