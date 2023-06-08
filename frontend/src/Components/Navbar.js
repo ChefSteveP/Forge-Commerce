@@ -140,15 +140,7 @@ const Navbar = () => {
             height="80"
             style={{ margin: "10px", marginLeft: "10px" }}
           />
-          <Search sx={{ flexGrow: 1 }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          <div style={{ flexGrow: 1 }} />
           {matches && (
             <>
               <ButtonWithBar
