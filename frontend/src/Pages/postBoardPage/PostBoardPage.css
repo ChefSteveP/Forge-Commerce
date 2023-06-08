@@ -55,12 +55,6 @@
   color: var(--custom-white);
 }
 
-.item-container {
-  overflow-y: auto;
-  max-height: 100vh;
-  margin-top: 100px;
-}
-
 .sold-tag {
   background-color: "white";
   color: "red";
