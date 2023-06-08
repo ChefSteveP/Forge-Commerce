@@ -104,10 +104,10 @@ export default function EditablePostCardPopover({
 
   return (
     <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={popoverOpen}
-        onClick={handlePopoverClose}
-      >
+      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      open={popoverOpen}
+      onClick={handlePopoverClose}
+    >
       <Popover
         open={popoverOpen && popoverAnchorEl === index}
         onClose={handlePopoverClose}
@@ -126,10 +126,11 @@ export default function EditablePostCardPopover({
           style={{
             backgroundColor: "var(--light-lilac)",
             padding: "0px",
+            minWidth: "300px",
           }}
         >
           <CardContent align="center">
-            <Grid container spacing={2} direction="column">
+            <Grid container spacing={2} direction="column" alignItems="center">
               <Grid item>
                 <Grid container justifyContent="center" alignItems="center">
                   <Grid item>
@@ -157,18 +158,13 @@ export default function EditablePostCardPopover({
                     container
                     justifyContent="space-between"
                   >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Name
-                      </Typography>
-                    </Grid>
                     <Grid item style={{ marginLeft: "auto" }}>
                       <TextField
                         defaultValue={data.name}
                         label="Item Name"
                         variant="outlined"
                         onChange={(e) => setName(e.target.value)}
-                        style={{ width: "200px" }}
+                        style={{ width: "250px" }}
                       />
                     </Grid>
                   </Grid>
@@ -178,18 +174,13 @@ export default function EditablePostCardPopover({
                     container
                     justifyContent="space-between"
                   >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Description
-                      </Typography>
-                    </Grid>
                     <Grid item style={{ marginLeft: "auto" }}>
                       <TextField
                         defaultValue={data.description}
                         label="Item Description"
                         variant="outlined"
                         onChange={(e) => setDescription(e.target.value)}
-                        style={{ width: "200px" }}
+                        style={{ width: "250px" }}
                       />
                     </Grid>
                   </Grid>
@@ -199,11 +190,6 @@ export default function EditablePostCardPopover({
                     container
                     justifyContent="space-between"
                   >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Price
-                      </Typography>
-                    </Grid>
                     <Grid item style={{ marginLeft: "auto" }}>
                       <TextField
                         type="number"
@@ -211,7 +197,7 @@ export default function EditablePostCardPopover({
                         label="Price"
                         variant="outlined"
                         onChange={(e) => setPrice(e.target.value)}
-                        style={{ width: "200px" }}
+                        style={{ width: "250px" }}
                       />
                     </Grid>
                   </Grid>
@@ -221,11 +207,6 @@ export default function EditablePostCardPopover({
                     container
                     justifyContent="space-between"
                   >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        Condition
-                      </Typography>
-                    </Grid>
                     <Grid item style={{ marginLeft: "auto" }}>
                       <Select
                         label="Condition"
@@ -237,15 +218,12 @@ export default function EditablePostCardPopover({
                         margin="normal"
                         inputProps={{
                           style: {
-                            // color: "var(--custom-white)",
                             borderColor: "var(--custom-white)",
                           },
                         }}
                         style={{
-                          // color: "var(--custom-white)",
                           borderColor: "var(--custom-white)",
-                          width: "200px",
-                          marginLeft: "30px",
+                          width: "250px",
                           textAlign: "left",
                         }}
                       >
@@ -264,11 +242,6 @@ export default function EditablePostCardPopover({
                     container
                     justifyContent="space-between"
                   >
-                    <Grid item>
-                      <Typography className="infoTextColor" variant="body2">
-                        State
-                      </Typography>
-                    </Grid>
                     <Grid item style={{ marginLeft: "auto" }}>
                       <Select
                         label="State"
@@ -280,14 +253,12 @@ export default function EditablePostCardPopover({
                         margin="normal"
                         inputProps={{
                           style: {
-                            // color: "var(--custom-white)",
                             borderColor: "var(--custom-white)",
                           },
                         }}
                         style={{
-                          // color: "var(--custom-white)",
                           borderColor: "var(--custom-white)",
-                          width: "200px",
+                          width: "250px",
                           textAlign: "left",
                         }}
                       >
@@ -340,6 +311,6 @@ export default function EditablePostCardPopover({
           </CardContent>
         </Container>
       </Popover>
-    </Backdrop>                  
+    </Backdrop>
   );
 }
