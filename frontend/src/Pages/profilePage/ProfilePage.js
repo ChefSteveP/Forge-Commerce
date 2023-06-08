@@ -3,6 +3,7 @@ import { Container, Box } from "@mui/material";
 import ProfileCard from "./ProfileCard";
 import MyListings from "./MyListings";
 import Navbar from "../../Components/Navbar.js";
+import "./ProfilePage.css";
 
 const ProfilePage = () => {
   return (
@@ -10,8 +11,10 @@ const ProfilePage = () => {
       <Navbar />
       <div className="item-container">
         <h1 className="page-title">Profile Page</h1>
-        <ProfileCard />
-        <MyListings />
+        <div className="profile-container">
+          <ProfileCard />
+          <MyListings />
+        </div>
         {/* <Box>
           <ProfileCard />
         </Box>

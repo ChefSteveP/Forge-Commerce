@@ -65,12 +65,12 @@ router.post("/", async function (req, res) {
 // edit listing
 router.put("/:listingID", async function (req, res) {
   try {
-    const ref = await updateDoc(
-      doc(db, "products", req.params.listingID),
-      req.body
-    );
-    return res.status(200).json({ message: "edit successful", id: ref.id });
+    await updateDoc(doc(db, "products", req.params.listingID), req.body);
+    return res
+      .status(200)
+      .json({ message: "edit successful", id: req.params.listingID });
   } catch (error) {
+    console.log(error);
     return res.status(405).json(error);
   }
 });
@@ -84,7 +84,5 @@ router.delete("/:listingID", async function (req, res) {
     return res.status(404).json(error);
   }
 });
-
-
 
 module.exports = router;
