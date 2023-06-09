@@ -3,6 +3,7 @@ import {
   Container,
   Grid,
   MenuItem,
+  Backdrop,
   Popover,
   Select,
 } from "@mui/material";
@@ -98,158 +99,164 @@ export default function FilterItems({
   }
 
   return (
-    <Popover
+    <Backdrop
+      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open={secondPopoverOpen}
-      onClose={handlePopoverClose}
-      anchorReference="anchorPosition"
-      anchorPosition={{
-        top: window.innerHeight / 2,
-        left: window.innerWidth / 2,
-      }}
-      transformOrigin={{
-        vertical: "center",
-        horizontal: "center",
-      }}
+      onClick={() => handlePopoverClose()}
     >
-      <Container
-        maxWidth="fullWidth"
-        style={{
-          backgroundColor: "var(--dark-lilac)",
-          padding: "20px",
+      <Popover
+        open={secondPopoverOpen}
+        onClose={handlePopoverClose}
+        anchorReference="anchorPosition"
+        anchorPosition={{
+          top: window.innerHeight / 2,
+          left: window.innerWidth / 2,
+        }}
+        transformOrigin={{
+          vertical: "center",
+          horizontal: "center",
         }}
       >
-        <Grid container style={{ marginBottom: "20px" }} spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <Select
-              label="Condition"
-              value={condition}
-              displayEmpty
-              onChange={(e) => setCondition(e.target.value)}
-              fullWidth
-              margin="normal"
-              inputProps={{
-                style: {
-                  color: "var(--custom-white)",
-                  borderColor: "var(--custom-white)",
-                },
-              }}
-              style={{
-                color: "var(--custom-white)",
-                borderColor: "var(--custom-white)",
-              }}
-            >
-              <MenuItem value="">Select Conditon</MenuItem>
-              <MenuItem value="well-worn">Well Worn</MenuItem>
-              <MenuItem value="minimal-use">Minimal Use</MenuItem>
-              <MenuItem value="brand-new">Brand New</MenuItem>
-            </Select>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Select
-              label="State"
-              value={state}
-              displayEmpty
-              onChange={(e) => setState(e.target.value)}
-              fullWidth
-              margin="normal"
-              inputProps={{
-                style: {
-                  color: "var(--custom-white)",
-                  borderColor: "var(--custom-white)",
-                },
-              }}
-              style={{
-                color: "var(--custom-white)",
-                borderColor: "var(--custom-white)",
-              }}
-            >
-              <MenuItem value="">Select State</MenuItem>
-              {states.map((stateName) => (
-                <MenuItem key={stateName} value={stateName}>
-                  {stateName}
-                </MenuItem>
-              ))}
-            </Select>
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          justifyContent={"center"}
-          style={{ marginBottom: "20px" }}
+        <Container
+          maxWidth="fullWidth"
+          style={{
+            backgroundColor: "var(--dark-lilac)",
+            padding: "20px",
+          }}
         >
-          <Grid item>
-            <Select
-              label="Price"
-              value={price}
-              displayEmpty
-              onChange={(e) => setPrice(e.target.value)}
-              fullWidth
-              margin="normal"
-              inputProps={{
-                style: {
+          <Grid container style={{ marginBottom: "20px" }} spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Select
+                label="Condition"
+                value={condition}
+                displayEmpty
+                onChange={(e) => setCondition(e.target.value)}
+                fullWidth
+                margin="normal"
+                inputProps={{
+                  style: {
+                    color: "var(--custom-white)",
+                    borderColor: "var(--custom-white)",
+                  },
+                }}
+                style={{
                   color: "var(--custom-white)",
                   borderColor: "var(--custom-white)",
-                },
-              }}
-              style={{
-                color: "var(--custom-white)",
-                borderColor: "var(--custom-white)",
-              }}
-            >
-              <MenuItem value="">Select Price Sort</MenuItem>
-              <MenuItem value="price-ascending">Price Ascending</MenuItem>
-              <MenuItem value="price-descending">Price Descending</MenuItem>
-            </Select>
+                }}
+              >
+                <MenuItem value="">Select Conditon</MenuItem>
+                <MenuItem value="well-worn">Well Worn</MenuItem>
+                <MenuItem value="minimal-use">Minimal Use</MenuItem>
+                <MenuItem value="brand-new">Brand New</MenuItem>
+              </Select>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Select
+                label="State"
+                value={state}
+                displayEmpty
+                onChange={(e) => setState(e.target.value)}
+                fullWidth
+                margin="normal"
+                inputProps={{
+                  style: {
+                    color: "var(--custom-white)",
+                    borderColor: "var(--custom-white)",
+                  },
+                }}
+                style={{
+                  color: "var(--custom-white)",
+                  borderColor: "var(--custom-white)",
+                }}
+              >
+                <MenuItem value="">Select State</MenuItem>
+                {states.map((stateName) => (
+                  <MenuItem key={stateName} value={stateName}>
+                    {stateName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container justifyContent="center" spacing={2}>
-          <Grid item>
-            <Button
-              variant="contained"
-              onClick={() => {
-                handleFilter();
-                setSecondPopoverOpen(false);
-              }}
-              sx={{
-                backgroundColor: "var(--custom-white)",
-                "&:hover": { backgroundColor: "var(--custom-white)" },
-                color: "var(--dark-lilac)",
-              }}
-            >
-              Apply Filters
-            </Button>
+          <Grid
+            container
+            justifyContent={"center"}
+            style={{ marginBottom: "20px" }}
+          >
+            <Grid item>
+              <Select
+                label="Price"
+                value={price}
+                displayEmpty
+                onChange={(e) => setPrice(e.target.value)}
+                fullWidth
+                margin="normal"
+                inputProps={{
+                  style: {
+                    color: "var(--custom-white)",
+                    borderColor: "var(--custom-white)",
+                  },
+                }}
+                style={{
+                  color: "var(--custom-white)",
+                  borderColor: "var(--custom-white)",
+                }}
+              >
+                <MenuItem value="">Select Price Sort</MenuItem>
+                <MenuItem value="price-ascending">Price Ascending</MenuItem>
+                <MenuItem value="price-descending">Price Descending</MenuItem>
+              </Select>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              onClick={() => setSecondPopoverOpen(false)}
-              sx={{
-                backgroundColor: "var(--custom-white)",
-                "&:hover": { backgroundColor: "var(--custom-white)" },
-                color: "var(--dark-lilac)",
-              }}
-            >
-              Cancel
-            </Button>
+          <Grid container justifyContent="center" spacing={2}>
+            <Grid item>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  handleFilter();
+                  setSecondPopoverOpen(false);
+                }}
+                sx={{
+                  backgroundColor: "var(--custom-white)",
+                  "&:hover": { backgroundColor: "var(--custom-white)" },
+                  color: "var(--dark-lilac)",
+                }}
+              >
+                Apply Filters
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                onClick={() => setSecondPopoverOpen(false)}
+                sx={{
+                  backgroundColor: "var(--custom-white)",
+                  "&:hover": { backgroundColor: "var(--custom-white)" },
+                  color: "var(--dark-lilac)",
+                }}
+              >
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  handleReset();
+                  setSecondPopoverOpen(false);
+                }}
+                sx={{
+                  backgroundColor: "var(--custom-white)",
+                  "&:hover": { backgroundColor: "var(--custom-white)" },
+                  color: "var(--dark-lilac)",
+                }}
+              >
+                Reset Filters
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              onClick={() => {
-                handleReset();
-                setSecondPopoverOpen(false);
-              }}
-              sx={{
-                backgroundColor: "var(--custom-white)",
-                "&:hover": { backgroundColor: "var(--custom-white)" },
-                color: "var(--dark-lilac)",
-              }}
-            >
-              Reset Filters
-            </Button>
-          </Grid>
-        </Grid>
-      </Container>
-    </Popover>
+        </Container>
+      </Popover>
+    </Backdrop>
   );
 }

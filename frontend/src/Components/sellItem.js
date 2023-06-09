@@ -5,6 +5,7 @@ import {
   Button,
   Select,
   MenuItem,
+  Backdrop,
   Grid,
   InputBase,
 } from "@mui/material";
@@ -131,222 +132,228 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
   }
 
   return (
-    <Popover
+    <Backdrop
+      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open={popoverOpen}
-      onClose={handlePopoverClose}
-      anchorReference="anchorPosition"
-      anchorPosition={{
-        top: window.innerHeight / 2,
-        left: window.innerWidth / 2,
-      }}
-      transformOrigin={{
-        vertical: "center",
-        horizontal: "center",
-      }}
+      onClick={() => handlePopoverClose()}
     >
-      <Container
-        maxWidth="fullWidth"
-        style={{
-          backgroundColor: "var(--dark-lilac)",
-          padding: "20px",
+      <Popover
+        open={popoverOpen}
+        onClose={handlePopoverClose}
+        anchorReference="anchorPosition"
+        anchorPosition={{
+          top: window.innerHeight / 2,
+          left: window.innerWidth / 2,
+        }}
+        transformOrigin={{
+          vertical: "center",
+          horizontal: "center",
         }}
       >
-        <TextField
-          label="Item Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          fullWidth
-          required
-          margin="normal"
-          InputLabelProps={{
-            style: { color: "var(--custom-white)" },
+        <Container
+          maxWidth="fullWidth"
+          style={{
+            backgroundColor: "var(--dark-lilac)",
+            padding: "20px",
           }}
-          InputProps={{
-            style: {
-              color: "var(--custom-white)",
-              borderColor: "var(--custom-white)",
-            },
-          }}
-        />
+        >
+          <TextField
+            label="Item Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            fullWidth
+            required
+            margin="normal"
+            InputLabelProps={{
+              style: { color: "var(--custom-white)" },
+            }}
+            InputProps={{
+              style: {
+                color: "var(--custom-white)",
+                borderColor: "var(--custom-white)",
+              },
+            }}
+          />
 
-        <TextField
-          label="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          fullWidth
-          required
-          multiline
-          rows={4}
-          margin="normal"
-          InputLabelProps={{
-            style: { color: "var(--custom-white)" },
-          }}
-          InputProps={{
-            style: {
-              color: "var(--custom-white)",
-              borderColor: "var(--custom-white)",
-            },
-          }}
-        />
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <Select
-              label="Condition"
-              value={condition}
-              displayEmpty
-              onChange={(e) => setCondition(e.target.value)}
-              fullWidth
-              required
-              margin="normal"
-              inputProps={{
-                style: {
-                  color: "var(--custom-white)",
-                  borderColor: "var(--custom-white)",
-                },
-              }}
-              style={{
+          <TextField
+            label="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            fullWidth
+            required
+            multiline
+            rows={4}
+            margin="normal"
+            InputLabelProps={{
+              style: { color: "var(--custom-white)" },
+            }}
+            InputProps={{
+              style: {
                 color: "var(--custom-white)",
                 borderColor: "var(--custom-white)",
-              }}
-            >
-              <MenuItem value="" disabled>
-                Select Conditon
-              </MenuItem>
-              <MenuItem value="well-worn">Well Worn</MenuItem>
-              <MenuItem value="minimal-use">Minimal Use</MenuItem>
-              <MenuItem value="brand-new">Brand New</MenuItem>
-            </Select>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Select
-              label="State"
-              value={state}
-              displayEmpty
-              onChange={(e) => setState(e.target.value)}
-              fullWidth
-              required
-              margin="normal"
-              inputProps={{
-                style: {
+              },
+            }}
+          />
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Select
+                label="Condition"
+                value={condition}
+                displayEmpty
+                onChange={(e) => setCondition(e.target.value)}
+                fullWidth
+                required
+                margin="normal"
+                inputProps={{
+                  style: {
+                    color: "var(--custom-white)",
+                    borderColor: "var(--custom-white)",
+                  },
+                }}
+                style={{
                   color: "var(--custom-white)",
                   borderColor: "var(--custom-white)",
-                },
-              }}
-              style={{
-                color: "var(--custom-white)",
-                borderColor: "var(--custom-white)",
-              }}
-            >
-              <MenuItem value="" disabled>
-                Select State
-              </MenuItem>
-              {states.map((stateName) => (
-                <MenuItem key={stateName} value={stateName}>
-                  {stateName}
+                }}
+              >
+                <MenuItem value="" disabled>
+                  Select Conditon
                 </MenuItem>
-              ))}
-            </Select>
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              fullWidth
-              required
-              type="number"
-              margin="normal"
-              InputLabelProps={{
-                style: { color: "var(--custom-white)" },
-              }}
-              InputProps={{
-                style: {
+                <MenuItem value="well-worn">Well Worn</MenuItem>
+                <MenuItem value="minimal-use">Minimal Use</MenuItem>
+                <MenuItem value="brand-new">Brand New</MenuItem>
+              </Select>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Select
+                label="State"
+                value={state}
+                displayEmpty
+                onChange={(e) => setState(e.target.value)}
+                fullWidth
+                required
+                margin="normal"
+                inputProps={{
+                  style: {
+                    color: "var(--custom-white)",
+                    borderColor: "var(--custom-white)",
+                  },
+                }}
+                style={{
                   color: "var(--custom-white)",
                   borderColor: "var(--custom-white)",
-                },
-              }}
-            />
+                }}
+              >
+                <MenuItem value="" disabled>
+                  Select State
+                </MenuItem>
+                {states.map((stateName) => (
+                  <MenuItem key={stateName} value={stateName}>
+                    {stateName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
           </Grid>
-          <Grid
-            container
-            item
-            xs={12}
-            sm={6}
-            justifyContent="flex-end"
-            padding="20px"
-          >
-            <InputBase
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              sx={{
-                borderBottom: "none",
-                "&:hover": {
+          <Grid container>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                fullWidth
+                required
+                type="number"
+                margin="normal"
+                InputLabelProps={{
+                  style: { color: "var(--custom-white)" },
+                }}
+                InputProps={{
+                  style: {
+                    color: "var(--custom-white)",
+                    borderColor: "var(--custom-white)",
+                  },
+                }}
+              />
+            </Grid>
+            <Grid
+              container
+              item
+              xs={12}
+              sm={6}
+              justifyContent="flex-end"
+              padding="20px"
+            >
+              <InputBase
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                sx={{
                   borderBottom: "none",
-                },
-                "&:focus": {
-                  borderBottom: "none",
-                },
-                "& input[type='file']::file-selector-button": {
+                  "&:hover": {
+                    borderBottom: "none",
+                  },
+                  "&:focus": {
+                    borderBottom: "none",
+                  },
+                  "& input[type='file']::file-selector-button": {
+                    backgroundColor: "var(--custom-white)",
+                    color: "var(--dark-lilac)",
+                    borderColor: "var(--custom-white)",
+                    borderRadius: "5px",
+                    border: "none",
+                    padding: "5px",
+                  },
+                }}
+                inputProps={{
+                  style: {
+                    color: "var(--custom-white)",
+                    borderColor: "var(--custom-white)",
+                  },
+                }}
+              />
+            </Grid>
+          </Grid>
+          <Grid container justifyContent="center" spacing={2}>
+            <Grid item>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  handleFormSubmit();
+                  setPopoverOpen(false);
+                }}
+                sx={{
                   backgroundColor: "var(--custom-white)",
+                  "&:hover": { backgroundColor: "var(--custom-white)" },
                   color: "var(--dark-lilac)",
-                  borderColor: "var(--custom-white)",
-                  borderRadius: "5px",
-                  border: "none",
-                  padding: "5px",
-                },
-              }}
-              inputProps={{
-                style: {
-                  color: "var(--custom-white)",
-                  borderColor: "var(--custom-white)",
-                },
-              }}
-            />
+                }}
+              >
+                List Item
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setPopoverOpen(false);
+                  setName("");
+                  setCondition("");
+                  setDescription("");
+                  setPrice("");
+                  setState("");
+                  setSelectedImage(null);
+                }}
+                sx={{
+                  backgroundColor: "var(--custom-white)",
+                  "&:hover": { backgroundColor: "var(--custom-white)" },
+                  color: "var(--dark-lilac)",
+                }}
+              >
+                Cancel
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container justifyContent="center" spacing={2}>
-          <Grid item>
-            <Button
-              variant="contained"
-              onClick={() => {
-                handleFormSubmit();
-                setPopoverOpen(false);
-              }}
-              sx={{
-                backgroundColor: "var(--custom-white)",
-                "&:hover": { backgroundColor: "var(--custom-white)" },
-                color: "var(--dark-lilac)",
-              }}
-            >
-              List Item
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              onClick={() => {
-                setPopoverOpen(false);
-                setName("");
-                setCondition("");
-                setDescription("");
-                setPrice("");
-                setState("");
-                setSelectedImage(null);
-              }}
-              sx={{
-                backgroundColor: "var(--custom-white)",
-                "&:hover": { backgroundColor: "var(--custom-white)" },
-                color: "var(--dark-lilac)",
-              }}
-            >
-              Cancel
-            </Button>
-          </Grid>
-        </Grid>
-      </Container>
-    </Popover>
+        </Container>
+      </Popover>
+    </Backdrop>  
   );
 }
