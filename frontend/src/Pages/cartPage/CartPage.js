@@ -18,7 +18,6 @@ export default function CartPage() {
         try {
           setCurUser(user.email);
         } catch (error) {
-          // Handle any errors
           console.error(error);
         }
       }
