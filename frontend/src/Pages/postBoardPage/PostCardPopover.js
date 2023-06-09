@@ -30,7 +30,6 @@ export default function PostCardPopover({
     <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={popoverOpen}
-        onClick={handlePopoverClose}
       >
       <Popover
         open={popoverOpen && popoverAnchorEl === index}
