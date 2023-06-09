@@ -56,10 +56,11 @@ export default function SoldEditablePostCardPopover({
         style={{
           backgroundColor: "var(--light-lilac)",
           padding: "0px",
+          minWidth: "300px",
         }}
       >
         <CardContent align="center">
-          <Grid container spacing={2} direction="column">
+          <Grid container spacing={2} direction="column" alignItems="center">
             <Grid item>
               <CardMedia
                 className="profileImage"
@@ -78,11 +79,6 @@ export default function SoldEditablePostCardPopover({
                   container
                   justifyContent="space-between"
                 >
-                  <Grid item>
-                    <Typography className="infoTextColor" variant="body2">
-                      Price
-                    </Typography>
-                  </Grid>
                   <Grid item style={{ marginLeft: "auto" }}>
                     <TextField
                       type="number"
@@ -90,7 +86,7 @@ export default function SoldEditablePostCardPopover({
                       label="Price"
                       variant="outlined"
                       onChange={(e) => setPrice(e.target.value)}
-                      style={{ width: "200px" }}
+                      style={{ width: "250px" }}
                     />
                   </Grid>
                 </Grid>

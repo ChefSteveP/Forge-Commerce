@@ -118,7 +118,7 @@ export default function FilterItems({
           padding: "20px",
         }}
       >
-        <Grid container style={{ marginBottom: "20px" }}>
+        <Grid container style={{ marginBottom: "20px" }} spacing={2}>
           <Grid item xs={12} sm={6}>
             <Select
               label="Condition"
@@ -211,9 +211,9 @@ export default function FilterItems({
                 setSecondPopoverOpen(false);
               }}
               sx={{
-                backgroundColor: "var(--dark-lilac)",
-                "&:hover": { backgroundColor: "var(--dark-lilac)" },
-                color: "var(--custom-white)",
+                backgroundColor: "var(--custom-white)",
+                "&:hover": { backgroundColor: "var(--custom-white)" },
+                color: "var(--dark-lilac)",
               }}
             >
               Apply Filters
@@ -224,9 +224,9 @@ export default function FilterItems({
               variant="contained"
               onClick={() => setSecondPopoverOpen(false)}
               sx={{
-                backgroundColor: "var(--dark-lilac)",
-                "&:hover": { backgroundColor: "var(--dark-lilac)" },
-                color: "var(--custom-white)",
+                backgroundColor: "var(--custom-white)",
+                "&:hover": { backgroundColor: "var(--custom-white)" },
+                color: "var(--dark-lilac)",
               }}
             >
               Cancel
@@ -240,9 +240,9 @@ export default function FilterItems({
                 setSecondPopoverOpen(false);
               }}
               sx={{
-                backgroundColor: "var(--dark-lilac)",
-                "&:hover": { backgroundColor: "var(--dark-lilac)" },
-                color: "var(--custom-white)",
+                backgroundColor: "var(--custom-white)",
+                "&:hover": { backgroundColor: "var(--custom-white)" },
+                color: "var(--dark-lilac)",
               }}
             >
               Reset Filters

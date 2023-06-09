@@ -29,7 +29,6 @@ export default function SoldPostCard({ data, index, addToCart }) {
     setPopoverAnchorEl(index);
     setPopoverOpen(true);
   }
-  console.log(data);
 
   // Unsell function
   const unsellItem = async () => {

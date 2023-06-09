@@ -188,7 +188,7 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
             },
           }}
         />
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <Select
               label="Condition"
@@ -290,9 +290,12 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
                   borderBottom: "none",
                 },
                 "& input[type='file']::file-selector-button": {
-                  backgroundColor: "var(--dark-lilac)",
-                  color: "var(--custom-white)",
-                  borderColor: "var(--dark-lilac)",
+                  backgroundColor: "var(--custom-white)",
+                  color: "var(--dark-lilac)",
+                  borderColor: "var(--custom-white)",
+                  borderRadius: "5px",
+                  border: "none",
+                  padding: "5px",
                 },
               }}
               inputProps={{
@@ -313,9 +316,9 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
                 setPopoverOpen(false);
               }}
               sx={{
-                backgroundColor: "var(--dark-lilac)",
-                "&:hover": { backgroundColor: "var(--dark-lilac)" },
-                color: "var(--custom-white)",
+                backgroundColor: "var(--custom-white)",
+                "&:hover": { backgroundColor: "var(--custom-white)" },
+                color: "var(--dark-lilac)",
               }}
             >
               List Item
@@ -334,9 +337,9 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
                 setSelectedImage(null);
               }}
               sx={{
-                backgroundColor: "var(--dark-lilac)",
-                "&:hover": { backgroundColor: "var(--dark-lilac)" },
-                color: "var(--custom-white)",
+                backgroundColor: "var(--custom-white)",
+                "&:hover": { backgroundColor: "var(--custom-white)" },
+                color: "var(--dark-lilac)",
               }}
             >
               Cancel

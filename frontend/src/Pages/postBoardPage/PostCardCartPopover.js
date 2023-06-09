@@ -6,11 +6,12 @@ import {
   Backdrop,
   Typography,
   CardMedia,
+  Backdrop,
   Button,
 } from "@mui/material";
 import React from "react";
 import "./PostBoardPage.css";
-import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function PostCardCartPopover({
@@ -28,11 +29,11 @@ export default function PostCardCartPopover({
 
   return (
     <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={popoverOpen}
-        onClick={handlePopoverClose}
-      >
-        <Popover
+      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      open={popoverOpen}
+      onClick={() => handlePopoverClose()}
+    >
+      <Popover
         open={popoverOpen && popoverAnchorEl === index}
         onClose={handlePopoverClose}
         anchorReference="anchorPosition"
@@ -205,23 +206,23 @@ export default function PostCardCartPopover({
                         removeFromCart(data.id);
                       }}
                     >
-                      <RemoveShoppingCartIcon
+                      <CloseIcon
                         fontSize="large"
                         style={{ color: "var(--custom-white)" }}
                       />
                     </Button>
                   </Grid>
                   <Grid item>
-                  <Button
-                    size="medium"
-                    onClick={() => {
-                      removeFromCart(data.id);
-                    }}
-                  >
-                    <BookmarkRemoveIcon
-                      fontSize="large"
-                      style={{ color: "var(--custom-white)" }}
-                    />
+                    <Button
+                      size="medium"
+                      onClick={() => {
+                        removeFromCart(data.id);
+                      }}
+                    >
+                      <BookmarkRemoveIcon
+                        fontSize="large"
+                        style={{ color: "var(--custom-white)" }}
+                      />
                     </Button>
                   </Grid>
                 </Grid>
@@ -230,7 +231,6 @@ export default function PostCardCartPopover({
           </CardContent>
         </Container>
       </Popover>
-      </Backdrop>
-    
+    </Backdrop>
   );
 }
