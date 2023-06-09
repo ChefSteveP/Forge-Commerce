@@ -48,13 +48,10 @@ export default function PostBoardPage() {
 
   const addToCart = async (id) => {
     try {
-      const response = await axios.post(
-        `https://forge-commerce.onrender.com/cart/add`,
-        {
-          email: curUser,
-          id: id,
-        }
-      );
+      await axios.post(`https://forge-commerce.onrender.com/cart/add`, {
+        email: curUser,
+        id: id,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +75,7 @@ export default function PostBoardPage() {
     if (info) {
       setFilteredInfo(info.filter(applyFilters));
     }
-  }, [info, filters]);
+  }, [info, filters, applyFilters]);
 
   const filteredData = search
     ? filteredInfo.filter(applyFilters)

@@ -5,9 +5,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Stack from "@mui/material/Stack";
 import StoreIcon from "@mui/icons-material/Store";
@@ -20,18 +18,6 @@ import logo from "../assets/logo1.png";
 import { RouteLocations } from "../app/RouteLocations";
 import { auth } from "../app/firebase";
 import { useNavigate } from "react-router-dom";
-
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.text.primary,
-}));
-
-const StyledMenuIcon = styled(MenuIcon)(({ theme }) => ({
-  color: theme.palette.text.primary,
-}));
-
-const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
-  color: theme.palette.text.primary,
-}));
 
 const NavigationLink = styled(RouterLink)(({ theme }) => ({
   textDecoration: "none",
@@ -49,47 +35,6 @@ const ButtonWithBar = styled(IconButton)(({ theme }) => ({
   },
   "&:active": {
     borderBottom: `2px solid ${theme.palette.primary.main}`,
-  },
-}));
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.secondary.main,
-  "&:hover": {
-    backgroundColor: theme.palette.secondary.dark,
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "20ch",
-      "&:focus": {
-        width: "30ch",
-      },
-    },
   },
 }));
 
@@ -115,12 +60,12 @@ const Navbar = () => {
         <StoreIcon />
         <Typography variant="body2">Shop</Typography>
       </NavigationLink>
-     
+
       <NavigationLink to={RouteLocations.cart}>
         <BookmarkIcon />
         <Typography variant="body2">Saved</Typography>
       </NavigationLink>
-       <NavigationLink to={RouteLocations.profile}>
+      <NavigationLink to={RouteLocations.profile}>
         <PersonIcon />
         <Typography variant="body2">Profile</Typography>
       </NavigationLink>
@@ -156,8 +101,8 @@ const Navbar = () => {
                 <BookmarkIcon />
                 <Typography variant="body2">Saved</Typography>
               </ButtonWithBar>
-              
-               <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
+
+              <ButtonWithBar component={RouterLink} to={RouteLocations.profile}>
                 <PersonIcon />
                 <Typography variant="body2">Profile</Typography>
               </ButtonWithBar>

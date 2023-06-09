@@ -45,13 +45,10 @@ export default function CartPage() {
 
   const removeFromCart = async (id) => {
     try {
-      const response = await axios.post(
-        `https://forge-commerce.onrender.com/cart/remove`,
-        {
-          email: curUser,
-          id: id,
-        }
-      );
+      await axios.post(`https://forge-commerce.onrender.com/cart/remove`, {
+        email: curUser,
+        id: id,
+      });
       const res = await axios.get(
         `https://forge-commerce.onrender.com/cart/${curUser}`
       );
