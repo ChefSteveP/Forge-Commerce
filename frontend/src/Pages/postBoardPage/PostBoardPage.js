@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./PostBoardPage.css";
 import Header from "./Header";
 import { Container, Grid } from "@mui/material";
@@ -61,15 +61,18 @@ export default function PostBoardPage() {
     setSearch(event.target.value);
   }
 
-  function applyFilters(info) {
-    const { condition, state } = filters;
-    const nameMatch = search
-      ? info.name.toLowerCase().includes(search.toLowerCase())
-      : true;
-    const conditionMatch = condition ? info.condition === condition : true;
-    const stateMatch = state ? info.state === state : true;
-    return nameMatch && conditionMatch && stateMatch;
-  }
+  const applyFilters = useCallback(
+    (info) => {
+      const { condition, state } = filters;
+      const nameMatch = search
+        ? info.name.toLowerCase().includes(search.toLowerCase())
+        : true;
+      const conditionMatch = condition ? info.condition === condition : true;
+      const stateMatch = state ? info.state === state : true;
+      return nameMatch && conditionMatch && stateMatch;
+    },
+    [filters, search]
+  );
 
   useEffect(() => {
     if (info) {
