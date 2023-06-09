@@ -41,7 +41,7 @@ function ProfileCard() {
   useEffect(() => {
     const fetchUser = async () => {
       const response = await fetch(
-        `http://localhost:9000/profile/user/${curUser}`
+        `https://forge-commerce.onrender.com/profile/user/${curUser}`
       );
       const data = await response.json();
       if (response.ok) {
@@ -58,7 +58,7 @@ function ProfileCard() {
   useEffect(() => {
     const fetchEarnings = async () => {
       const response = await fetch(
-        `http://localhost:9000/profile/earnings/${curUser}`
+        `https://forge-commerce.onrender.com/profile/earnings/${curUser}`
       );
       const data = await response.json();
       if (response.ok) {

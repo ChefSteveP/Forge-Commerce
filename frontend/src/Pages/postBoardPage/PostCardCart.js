@@ -29,7 +29,7 @@ export default function PostCardCart({ data, index, removeFromCart }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/profile/user/${data.listedby}`
+          `https://forge-commerce.onrender.com/profile/user/${data.listedby}`
         );
         setItemOwner(response.data.name);
       } catch (error) {

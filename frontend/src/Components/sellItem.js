@@ -109,11 +109,15 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
       formData.append("listedby", curUser);
       formData.append("amountSaved", 0);
       try {
-        await axios.post("http://localhost:9000/postBoard", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          "https://forge-commerce.onrender.com/postBoard",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setName("");
         setCondition("");
         setDescription("");
@@ -354,6 +358,6 @@ export default function SellItem({ popoverOpen, setPopoverOpen }) {
           </Grid>
         </Container>
       </Popover>
-    </Backdrop>  
+    </Backdrop>
   );
 }

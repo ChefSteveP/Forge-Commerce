@@ -35,7 +35,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/profile/user/${data.listedby}`
+          `https://forge-commerce.onrender.com/profile/user/${data.listedby}`
         );
         setItemOwner(response.data.name);
       } catch (error) {
@@ -51,7 +51,9 @@ export default function EditablePostCard({ data, index, addToCart }) {
 
   const confirmSell = async () => {
     // Perform the action on confirmation
-    await axios.put(`http://localhost:9000/profile/sell/${data.id}`);
+    await axios.put(
+      `https://forge-commerce.onrender.com/profile/sell/${data.id}`
+    );
     setSellOpen(false);
     window.location.reload();
   };
@@ -66,7 +68,7 @@ export default function EditablePostCard({ data, index, addToCart }) {
 
   const confirmDelete = async () => {
     // Perform the action on confirmation
-    axios.delete(`http://localhost:9000/profile/${data.id}`);
+    axios.delete(`https://forge-commerce.onrender.com/profile/${data.id}`);
     setDeleteOpen(false);
   };
 

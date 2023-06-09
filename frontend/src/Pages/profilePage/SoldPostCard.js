@@ -33,7 +33,9 @@ export default function SoldPostCard({ data, index, addToCart }) {
   // Unsell function
   const unsellItem = async () => {
     try {
-      await axios.put(`http://localhost:9000/profile/unsell/${data.id}`);
+      await axios.put(
+        `https://forge-commerce.onrender.com/profile/unsell/${data.id}`
+      );
       console.log("Item unsold");
       window.location.reload();
       // Add any state updates or additional actions here.
@@ -46,7 +48,7 @@ export default function SoldPostCard({ data, index, addToCart }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/profile/user/${data.listedby}`
+          `https://forge-commerce.onrender.com/profile/user/${data.listedby}`
         );
         setItemOwner(response.data.name);
       } catch (error) {

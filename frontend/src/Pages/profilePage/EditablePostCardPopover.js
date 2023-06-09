@@ -90,7 +90,7 @@ export default function EditablePostCardPopover({
   const editListing = () => {
     // Put request to edit listing
     axios
-      .put(`http://localhost:9000/profile/${data.id}`, {
+      .put(`https://forge-commerce.onrender.com/profile/${data.id}`, {
         name: name,
         condition: condition,
         description: description,

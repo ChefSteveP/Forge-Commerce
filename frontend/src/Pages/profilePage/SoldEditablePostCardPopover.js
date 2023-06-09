@@ -31,7 +31,7 @@ export default function SoldEditablePostCardPopover({
   const editListing = () => {
     // Put request to edit listing
     axios
-      .put(`http://localhost:9000/profile/${data.id}`, {
+      .put(`https://forge-commerce.onrender.com/profile/${data.id}`, {
         price: Number(price),
       })
       .then(window.location.reload())

@@ -36,7 +36,7 @@ export default function PostBoardPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/postBoard/${curUser}`
+          `https://forge-commerce.onrender.com/postBoard/${curUser}`
         );
         setInfo(response.data.filter((info) => !info.isSold));
       } catch (error) {
@@ -48,10 +48,13 @@ export default function PostBoardPage() {
 
   const addToCart = async (id) => {
     try {
-      const response = await axios.post(`http://localhost:9000/cart/add`, {
-        email: curUser,
-        id: id,
-      });
+      const response = await axios.post(
+        `https://forge-commerce.onrender.com/cart/add`,
+        {
+          email: curUser,
+          id: id,
+        }
+      );
     } catch (error) {
       console.log(error);
     }

@@ -38,12 +38,12 @@ const MyListings = () => {
 
       // Fetch username
       axios
-        .get(`http://localhost:9000/profile/user/${curUser}`)
+        .get(`https://forge-commerce.onrender.com/profile/user/${curUser}`)
         .then((res) => {
           setUsername(res.data.name);
           // Fetch listings by this user
           axios
-            .get(`http://localhost:9000/profile/${curUser}`)
+            .get(`https://forge-commerce.onrender.com/profile/${curUser}`)
             .then((res) => {
               console.log(res.data);
               setListings(res.data);
@@ -57,7 +57,10 @@ const MyListings = () => {
   const editListing = (index, listingID) => {
     // Put request to edit listing
     axios
-      .put(`http://localhost:9000/profile/${listingID}`, listings[index])
+      .put(
+        `https://forge-commerce.onrender.com/profile/${listingID}`,
+        listings[index]
+      )
       .then((res) => {
         console.log(res.data);
         setEditIndex(null);
@@ -68,7 +71,7 @@ const MyListings = () => {
   const deleteListing = (listingID) => {
     // Delete request to delete listing
     axios
-      .delete(`http://localhost:9000/profile/${listingID}`)
+      .delete(`https://forge-commerce.onrender.com/profile/${listingID}`)
       .then((res) => {
         console.log(res.data);
         // Update listings

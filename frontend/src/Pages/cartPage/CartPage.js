@@ -33,7 +33,7 @@ export default function CartPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/cart/${curUser}`
+          `https://forge-commerce.onrender.com/cart/${curUser}`
         );
         setMyCart(response.data);
       } catch (error) {
@@ -45,11 +45,16 @@ export default function CartPage() {
 
   const removeFromCart = async (id) => {
     try {
-      const response = await axios.post(`http://localhost:9000/cart/remove`, {
-        email: curUser,
-        id: id,
-      });
-      const res = await axios.get(`http://localhost:9000/cart/${curUser}`);
+      const response = await axios.post(
+        `https://forge-commerce.onrender.com/cart/remove`,
+        {
+          email: curUser,
+          id: id,
+        }
+      );
+      const res = await axios.get(
+        `https://forge-commerce.onrender.com/cart/${curUser}`
+      );
       setMyCart(res.data);
       window.location.reload();
     } catch (error) {

@@ -70,7 +70,7 @@ export default function LoginPage() {
           uid: user.uid,
         };
 
-        axios.post("http://localhost:9000/login", newUser);
+        axios.post("https://forge-commerce.onrender.com/login", newUser);
         setPopoverOpen(true);
       })
       .catch((error) => {
