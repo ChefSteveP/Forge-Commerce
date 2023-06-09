@@ -49,7 +49,15 @@ export default function PostCard({ data, index, addToCart }) {
         </div>
         <Card
           className="cardContentContainer"
-          style={{ backgroundColor: "var(--dark-lilac)" }}
+          style={{
+            paddingTop: "16px",
+            paddingBottom: "16px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            backgroundColor: "var(--dark-lilac)",
+          }}
         >
           <CardContent style={{ paddingTop: "16px", paddingBottom: "0px" }}>
             <Typography
@@ -61,10 +69,10 @@ export default function PostCard({ data, index, addToCart }) {
             >
               {data?.name}
             </Typography>
-            <Typography className="textColor" variant="h5">
-              ${data?.price}
-            </Typography>
           </CardContent>
+          <Typography className="textColor" variant="h5">
+            ${data?.price}
+          </Typography>
 
           <CardActions>
             <Button

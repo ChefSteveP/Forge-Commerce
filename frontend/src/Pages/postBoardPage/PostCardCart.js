@@ -50,9 +50,23 @@ export default function PostCardCart({ data, index, removeFromCart }) {
         </div>
         <Card
           className="cardContentContainer"
-          style={{ backgroundColor: "var(--dark-lilac)" }}
+          style={{
+            paddingTop: "16px",
+            paddingBottom: "16px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            backgroundColor: "var(--dark-lilac)",
+          }}
         >
-          <CardContent style={{ paddingTop: "16px", paddingBottom: "0px" }}>
+          <CardContent
+            style={{
+              paddingTop: "16px",
+              paddingBottom: "0px",
+              textAlign: "center",
+            }}
+          >
             <Typography
               className="textColor"
               gutterBottom
@@ -62,15 +76,20 @@ export default function PostCardCart({ data, index, removeFromCart }) {
             >
               {data?.name}
             </Typography>
-            <Typography className="textColor" variant="h5">
-              ${data?.price}
-            </Typography>
           </CardContent>
+          <Typography className="textColor" variant="h5">
+            ${data?.price}
+          </Typography>
 
           <CardActions>
             <Button
               size="medium"
               onClick={(event) => handleViewInfoButtonClick(event, index)}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
               <InfoIcon
                 fontSize="large"
@@ -106,6 +125,7 @@ export default function PostCardCart({ data, index, removeFromCart }) {
                 backgroundColor: "white",
                 marginBottom: "10px",
                 color: "red",
+                fontWeight: "bold",
               }}
             >
               Sold

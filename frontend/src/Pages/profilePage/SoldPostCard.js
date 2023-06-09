@@ -78,7 +78,15 @@ export default function SoldPostCard({ data, index, addToCart }) {
         </div>
         <Card
           className="cardContentContainer"
-          style={{ backgroundColor: "gray" }}
+          style={{
+            paddingTop: "16px",
+            paddingBottom: "16px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            backgroundColor: "gray",
+          }}
         >
           <CardContent style={{ paddingTop: "16px", paddingBottom: "0px" }}>
             <Typography
@@ -90,10 +98,10 @@ export default function SoldPostCard({ data, index, addToCart }) {
             >
               {data?.name}
             </Typography>
-            <Typography className="textColor" variant="h5">
-              ${data?.price}
-            </Typography>
           </CardContent>
+          <Typography className="textColor" variant="h5">
+            ${data?.price}
+          </Typography>
           <CardActions className="cardActions">
             <Button
               size="medium"
