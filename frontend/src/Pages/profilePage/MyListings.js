@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import axios from "axios";
 import { auth } from "../../app/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import EditablePostCard from "./EditablePostCard.js";
 import SoldPostCard from "./SoldPostCard.js";
@@ -11,7 +11,6 @@ import SoldPostCard from "./SoldPostCard.js";
 const MyListings = () => {
   const [listings, setListings] = useState([]);
   const [username, setUsername] = useState(null);
-  const [editIndex, setEditIndex] = useState(null);
   const [curUser, setCurUser] = useState(null);
 
   useEffect(() => {
@@ -54,32 +53,6 @@ const MyListings = () => {
     }
   }, [curUser]);
 
-  const editListing = (index, listingID) => {
-    // Put request to edit listing
-    axios
-      .put(
-        `https://forge-commerce.onrender.com/profile/${listingID}`,
-        listings[index]
-      )
-      .then((res) => {
-        console.log(res.data);
-        setEditIndex(null);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const deleteListing = (listingID) => {
-    // Delete request to delete listing
-    axios
-      .delete(`https://forge-commerce.onrender.com/profile/${listingID}`)
-      .then((res) => {
-        console.log(res.data);
-        // Update listings
-        setListings(listings.filter((listing) => listing.id !== listingID));
-      })
-      .catch((err) => console.error(err));
-  };
-
   return (
     <Box>
       {username && (
@@ -113,7 +86,7 @@ const MyListings = () => {
       )}
       <Container maxWidth="fullWidth">
         <Grid container className="cardGrid" spacing={3}>
-          {listings.map((listing, index) =>
+          {listings.map((listing) =>
             listing.isSold ? <SoldPostCard data={listing} /> : null
           )}
         </Grid>

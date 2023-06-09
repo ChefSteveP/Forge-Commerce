@@ -8,7 +8,6 @@ import CartPage from "../Pages/cartPage/CartPage";
 import LoginPage from "../Pages/loginPage/LoginPage";
 import CreateAccountPage from "../Pages/createAccountPage/CreateAccountPage";
 import ErrorPage from "../Pages/errorPage/ErrorPage";
-import Navbar from "../Components/Navbar";
 
 function App() {
   return (
