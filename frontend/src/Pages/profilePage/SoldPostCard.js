@@ -37,7 +37,9 @@ export default function SoldPostCard({ data, index, addToCart }) {
         `https://forge-commerce.onrender.com/profile/unsell/${data.id}`
       );
       console.log("Item unsold");
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
       // Add any state updates or additional actions here.
     } catch (error) {
       console.error(error);
@@ -62,10 +64,15 @@ export default function SoldPostCard({ data, index, addToCart }) {
     setDeleteOpen(true);
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     // Perform the action on confirmation
+    await axios.delete(
+      `https://forge-commerce.onrender.com/profile/${data.id}`
+    );
     setDeleteOpen(false);
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   };
 
   const cancelDelete = () => {

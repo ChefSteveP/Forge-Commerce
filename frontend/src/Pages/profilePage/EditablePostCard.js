@@ -55,7 +55,9 @@ export default function EditablePostCard({ data, index, addToCart }) {
       `https://forge-commerce.onrender.com/profile/sell/${data.id}`
     );
     setSellOpen(false);
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   };
 
   const cancelSell = () => {
@@ -68,8 +70,13 @@ export default function EditablePostCard({ data, index, addToCart }) {
 
   const confirmDelete = async () => {
     // Perform the action on confirmation
-    axios.delete(`https://forge-commerce.onrender.com/profile/${data.id}`);
+    await axios.delete(
+      `https://forge-commerce.onrender.com/profile/${data.id}`
+    );
     setDeleteOpen(false);
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   };
 
   const cancelDelete = () => {

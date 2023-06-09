@@ -33,7 +33,11 @@ export default function SoldEditablePostCardPopover({
       .put(`https://forge-commerce.onrender.com/profile/${data.id}`, {
         price: Number(price),
       })
-      .then(window.location.reload())
+      .then(
+        setTimeout(() => {
+          window.location.reload();
+        }, 500)
+      )
       .catch((err) => console.error(err));
   };
 
