@@ -97,7 +97,11 @@ export default function EditablePostCardPopover({
         price: Number(price),
         state: state,
       })
-      .then(window.location.reload())
+      .then(
+        setTimeout(() => {
+          window.location.reload();
+        }, 500)
+      )
       .catch((err) => console.error(err));
   };
 
