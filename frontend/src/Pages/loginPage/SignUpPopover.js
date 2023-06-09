@@ -1,4 +1,4 @@
-import { Button, Container, Popover, Typography } from "@mui/material";
+import { Button, Container, Popover, Typography,Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import React from "react";
 import DoneIcon from "@mui/icons-material/Done";
 
@@ -15,45 +15,26 @@ export default function SignUpPopover({
   };
 
   return (
-    <Popover
-      open={popoverOpen}
-      onClose={handleClose}
-      anchorReference="anchorPosition"
-      anchorPosition={{
-        top: window.innerHeight / 2,
-        left: window.innerWidth / 2,
-      }}
-      transformOrigin={{
-        vertical: "center",
-        horizontal: "center",
-      }}
-    >
-      <Container
-        maxWidth="sm"
-        style={{
-          backgroundColor: "var(--light-lilac)",
-          padding: "0px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography
-          variant="h5"
-          align="center"
-          style={{ marginTop: "20px" }} // Add margin above the text
-        >
-          Check your email to verify your anonymous email for customer-client
-          communication
-        </Typography>
-        <Button
-          onClick={handleClose}
-          style={{ marginTop: "20px" }} // Add margin below the button
-        >
-          <DoneIcon fontSize="large" style={{ color: "var(--custom-white)" }} />
-        </Button>
-      </Container>
-    </Popover>
+    <>
+    <Dialog open={popoverOpen} onClose={handleClose}>
+                <DialogTitle>Important Notice</DialogTitle>
+                <DialogContent>
+                  <Typography sx={{fontWeight: 'bold'}}>
+                    Very your email address for anonymous customer-client interaction. [NOTE]: You will NOT be able to be contacted by buyers if you do not verify your email.
+                  </Typography>
+                </DialogContent>
+                <DialogActions style={{ justifyContent: "center" }}>
+                  <Button
+                    onClick={handleClose}
+                    variant="contained"
+                    color="primary"
+                    style={{ backgroundColor: "var(--dark-lilac)" }}
+                  >
+                    Okay
+                  </Button>
+                </DialogActions>
+              </Dialog>
+    
+    </>
   );
 }
