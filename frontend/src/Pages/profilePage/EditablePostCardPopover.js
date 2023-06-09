@@ -3,7 +3,6 @@ import {
   Container,
   Grid,
   Popover,
-  Typography,
   CardMedia,
   Button,
   Backdrop,
