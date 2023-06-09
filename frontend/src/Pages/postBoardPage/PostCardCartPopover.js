@@ -6,7 +6,6 @@ import {
   Backdrop,
   Typography,
   CardMedia,
-  Backdrop,
   Button,
 } from "@mui/material";
 import React from "react";
